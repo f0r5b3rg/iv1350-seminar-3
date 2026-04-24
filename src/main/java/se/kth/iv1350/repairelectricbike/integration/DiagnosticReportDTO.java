@@ -8,33 +8,33 @@ package se.kth.iv1350.repairelectricbike.integration;
 import java.util.ArrayList;
 import java.util.List;
 
-class DiagnosticReportDTO {
+public class DiagnosticReportDTO {
     private final String diagnosticResult;
-    private final List<RepairTaskDTO> repairTasks; 
+    private final List<RepairTaskDTO> repairTasks;
     private final int totalCost;
 
     /**
      * Creates a new instance of a diagnostic report DTO.
      *
-     * @param diagnosticResult  Result of diagnosis.
-     * @param repairTasks       Repair tasks as specified by technician.
-     * @param totalCost         Total cost of all repair tasks.
+     * @param diagnosticResult Result of diagnosis.
+     * @param repairTasks      Repair tasks as specified by technician.
+     * @param totalCost        Total cost of all repair tasks.
      */
-    DiagnosticReportDTO(String diagnosticResult, List<RepairTaskDTO> repairTasks, int totalCost) {
+    public DiagnosticReportDTO(String diagnosticResult, List<RepairTaskDTO> repairTasks, int totalCost) {
         this.diagnosticResult = diagnosticResult;
         this.repairTasks = new ArrayList<RepairTaskDTO>();
         this.totalCost = totalCost;
-   }
+    }
 
-   public String getDiagnosticResult() {
-       return this.diagnosticResult;
-   }
+    public String getDiagnosticResult() {
+        return this.diagnosticResult;
+    }
 
-   public List<RepairTaskDTO> getRepairTasks() {
-       return this.repairTasks;
-   }
+    public List<RepairTaskDTO> getRepairTasks() {
+        return this.repairTasks;
+    }
 
-   public int getTotalCost() {
-       return this.totalCost;
-   }
+    public int getTotalCost() {
+        return this.totalCost;
+    }
 }

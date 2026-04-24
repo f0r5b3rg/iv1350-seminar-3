@@ -7,11 +7,15 @@ import java.time.LocalDate;
 import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 import se.kth.iv1350.repairelectricbike.integration.Printer;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
 import se.kth.iv1350.repairelectricbike.integration.State;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
+import se.kth.iv1350.repairelectricbike.model.Customer;
+import se.kth.iv1350.repairelectricbike.model.DiagnosticReport;
 
 /**
  * This is the application's only controller class. All calls to the model pass
@@ -42,22 +46,41 @@ public class Controller {
      *
      * @param phoneNumber The phone number of the sought customer.
      */
-    public CustomerDTO searchCustomer(int phoneNumber)
-    {
+    public CustomerDTO searchCustomer(int phoneNumber) {
         return customerRegistry.searchCustomer(phoneNumber);
     }
 
     /**
      * Returns an int value which represents the customers repair order id.
      *
-     * @param phoneNumber The phone number of the customer.
-     * @param problemDesc The description of the problems with the customers bike.
+     * @param phoneNumber  The phone number of the customer.
+     * @param problemDesc  The description of the problems with the customers bike.
      * @param bikeSerialNo The serial number of the customers bike.
      */
-    public void createRepairOrder(int phoneNumber, String bikeSerialNo, String problemDesc)
-    {
+    public void createRepairOrder(int phoneNumber, String bikeSerialNo, String problemDesc) {
         CustomerDTO customer = searchCustomer(phoneNumber);
         activeRepairOrder = new RepairOrder(customer, problemDesc, bikeSerialNo);
+    }
+
+    public void saveActiveRepairOrder() {
+
+        DiagnosticReportDTO diagnosticReportToSave = new DiagnosticReportDTO(
+                activeRepairOrder.getDiagnosticReport().getDiagnosticResult(),
+                activeRepairOrder.getDiagnosticReport().getRepairTasks(),
+                activeRepairOrder.getDiagnosticReport().getTotalCost());
+
+        CustomerDTO customerToSave = new CustomerDTO(activeRepairOrder.getCustomer().getName(),
+                activeRepairOrder.getCustomer().getEmail(), activeRepairOrder.getCustomer().getPhoneNumber(),
+                activeRepairOrder.getCustomer().getOwnedBikes());
+
+        RepairOrderDTO toSave = new RepairOrderDTO(activeRepairOrder.getId(), customerToSave,
+                activeRepairOrder.getBikeToRepair(), activeRepairOrder.getProblemDescription(),
+                activeRepairOrder.getEstimatedCompletionDate(), activeRepairOrder.getState(), diagnosticReportToSave);
+        repairOrderRegistry.addRepairOrder(toSave);
+    }
+
+    public void saveCustomer(ArrayList<CustomerDTO> customer) {
+        customerRegistry.addCustomer(customer);
     }
 
     /**
@@ -65,63 +88,54 @@ public class Controller {
      *
      * @param state The state of the repair orders.
      */
-    public List<RepairOrderDTO> findRepairOrders(State state)
-    {
-        //return repairOrderRegistry.findRepairOrders(state);
-        return null; //väntar på implementation
+    public List<RepairOrderDTO> findRepairOrders(State state) {
+        return repairOrderRegistry.findRepairOrders(state);
     }
 
     /**
      * hmmmm
      *
-     * @param repairOrderId The id of the repair order.
+     * @param repairOrderId         The id of the repair order.
      * @param repairTaskDescription ...
-     * @param costOfRepair ...
+     * @param costOfRepair          ...
      */
-    public void addRepairTask(int repairOrderId, String repairTaskDescription, int costOfRepair)
-    {
-        //Coming soon
+    public void addRepairTask(int repairOrderId, String repairTaskDescription, int costOfRepair) {
+        // Coming soon
     }
-
 
     /**
      * Updates the current state of the repair order.
      *
      * @param repairOrderId The id of the repair order.
-     * @param newState The new state of the repair order.
+     * @param newState      The new state of the repair order.
      */
-    public void updateState(int repairOrderId, State newState)
-    {
-        //repairOrderRegistry.updateState(repairOrderID, newState);
-        //väntar på implementation
+    public void updateState(int repairOrderId, State newState) {
+        // repairOrderRegistry.updateState(repairOrderID, newState);
+        // väntar på implementation
     }
-
 
     /**
      * Updates the diagnostic report of the repair order.
      *
-     * @param repairOrderID The id of the repair order.
+     * @param repairOrderID    The id of the repair order.
      * @param diagnosticReport ...
      */
-    public void updateDiagnosticReport(int repairOrderID, String diagnosticReport )
-    {
-        //repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticReport);
-        //väntar på implementation
+    public void updateDiagnosticReport(int repairOrderID, String diagnosticReport) {
+        // repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticReport);
+        // väntar på implementation
     }
-
 
     /**
      * Finds the repair order and prints it.
      *
      * @param repairOrderId The id of the repair order.
      */
-    public void printRepairOrder(int repairOrderId)
-    {
-        //RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyId(repairOrderId);
-        //printer.printRepairOrder(repairOrderToPrint);
-        //väntar på implementation
+    public void printRepairOrder(int repairOrderId) {
+        // RepairOrderDTO repairOrderToPrint =
+        // repairOrderRegistry.getRepairOrderDTObyId(repairOrderId);
+        // printer.printRepairOrder(repairOrderToPrint);
+        // väntar på implementation
     }
-
 
     /**
      * Updates the estimated completion date of the repair order.
@@ -129,10 +143,9 @@ public class Controller {
      * @param repairOrderId The id of the repair order.
      * @param estimatedDate The new estimated completion date of the repair order.
      */
-    public void updateCompletionDate(int repairOrderId, LocalDate estimatedDate)
-    {
-        //repairOrderRegistry.updateCompletionDate(repairOrderId, estimatedDate);
-        //väntar på implementation
+    public void updateCompletionDate(int repairOrderId, LocalDate estimatedDate) {
+        // repairOrderRegistry.updateCompletionDate(repairOrderId, estimatedDate);
+        // väntar på implementation
     }
 
 }

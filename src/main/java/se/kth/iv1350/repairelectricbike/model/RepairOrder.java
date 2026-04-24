@@ -28,4 +28,33 @@ public class RepairOrder {
         this.state = State.NEWLY_CREATED;
         this.diagnosticReport = new DiagnosticReport();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public BikeDTO getBikeToRepair() {
+        return bikeToRepair;
+    }
+
+    public String getProblemDescription() {
+        return problemDescription;
+    }
+
+    public LocalDate getEstimatedCompletionDate() {
+        return estimatedCompletionDate;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public DiagnosticReport getDiagnosticReport() {
+        return diagnosticReport;
+    }
+
 }

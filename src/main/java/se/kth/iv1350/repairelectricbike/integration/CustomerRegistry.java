@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRegistry {
-    private List<CustomerData> customers = new ArrayList<>();
+    private List<CustomerData> customers;
 
     CustomerRegistry() {
-        addCustomer();
+        this.customers = new ArrayList<CustomerData>();
     }
 
-    private void addCustomer() {
-        customers.add(new CustomerData("Test Testsson", "test@test.com", 0707777777, new ArrayList<>(List.of(
-                new BikeDTO("Scott", "Tester", "123test67"),
-                new BikeDTO("Lamborghini", "Aventador", "123bike123")))));
-        customers.add(new CustomerData("Prov Provsdotter", "prov@prov.se", 1231231212, new ArrayList<>(List.of(
-                new BikeDTO("Artemis", "Two", "321liftoff")))));
+    public void addCustomer(ArrayList<CustomerDTO> customers) {
+        for (CustomerDTO customerDTO : customers) {
+            this.customers
+                    .add(new CustomerData(customerDTO.getName(), customerDTO.getEmail(), customerDTO.getPhoneNumber(),
+                            customerDTO.getOwnedBikes()));
+        }
     }
 
     /**
@@ -37,6 +37,7 @@ public class CustomerRegistry {
                 return new CustomerDTO(customer.name, customer.email, customer.phoneNumber, customer.ownedBikes);
             }
         }
+        System.out.println("Customer not found");
         return null;
     }
 

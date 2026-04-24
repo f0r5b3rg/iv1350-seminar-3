@@ -34,7 +34,7 @@ public class RepairOrderDTO {
      * @param state                   The current state of repair order.
      */
 
-    public RepairOrderDTO(int id, CustomerDTO customer, BikeDTO bikeToRepair, 
+    public RepairOrderDTO(int id, CustomerDTO customer, BikeDTO bikeToRepair,
             String problemDescription, LocalDate estimatedCompletionDate,
             State state, DiagnosticReportDTO diagnosticReport) {
         this.id = id;

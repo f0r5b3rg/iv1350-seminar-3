@@ -10,14 +10,29 @@ import java.util.List;
 import java.time.LocalDate;
 
 public class RepairOrderRegistry {
-    private List<RepairOrderData> repairOrders = new ArrayList<>();
+    private List<RepairOrderData> repairOrders;
 
     RepairOrderRegistry() {
-        addRepairOrder();
+        this.repairOrders = new ArrayList<>();
     }
 
-    private void addRepairOrder() {
+    public void addRepairOrder(RepairOrderDTO repairOrderDTO) {
+        repairOrders.add(new RepairOrderData(repairOrderDTO.getId(), repairOrderDTO.getCustomer(),
+                repairOrderDTO.getBikeToRepair(),
+                repairOrderDTO.getProblemDescription(), repairOrderDTO.getDate(), repairOrderDTO.getState(),
+                repairOrderDTO.getDiagnoticReport()));
+    }
 
+    public List<RepairOrderDTO> findRepairOrders(State state) {
+        List<RepairOrderDTO> result = new ArrayList<>();
+        for (RepairOrderData repairOrder : repairOrders) {
+            if (state == repairOrder.state) {
+                result.add(new RepairOrderDTO(repairOrder.id, repairOrder.customer, repairOrder.bikeToRepair,
+                        repairOrder.problemDescription, repairOrder.estimatedCompletionDate, repairOrder.state,
+                        repairOrder.diagnosticReport));
+            }
+        }
+        return result;
     }
 
     private class RepairOrderData {
@@ -29,8 +44,8 @@ public class RepairOrderRegistry {
         private State state;
         private DiagnosticReportDTO diagnosticReport;
 
-        public RepairOrderData(int id, CustomerDTO customer, BikeDTO bikeToRepair, 
-                String problemDescription, LocalDate estimatedCompletionDate, 
+        public RepairOrderData(int id, CustomerDTO customer, BikeDTO bikeToRepair,
+                String problemDescription, LocalDate estimatedCompletionDate,
                 State state, DiagnosticReportDTO diagnosticReport) {
             this.id = id;
             this.customer = customer;

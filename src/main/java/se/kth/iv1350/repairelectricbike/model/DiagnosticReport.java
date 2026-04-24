@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 
-class DiagnosticReport {
+public class DiagnosticReport {
     private String diagnosticResult;
     private List<RepairTaskDTO> repairTasks;
     private int totalCost;
@@ -23,4 +23,17 @@ class DiagnosticReport {
     void addRepairTask(RepairTaskDTO repairTask) {
         repairTasks.add(repairTask);
     }
+
+    public String getDiagnosticResult() {
+        return diagnosticResult;
+    }
+
+    public List<RepairTaskDTO> getRepairTasks() {
+        return repairTasks;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
 }
