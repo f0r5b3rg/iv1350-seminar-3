@@ -6,28 +6,32 @@ import se.kth.iv1350.repairelectricbike.controller.Controller;
  * This program has no view, instead, this class is a placeholder for the entire
  * view.
  */
-public class View
-{
+public class View {
     private Controller controller;
 
     /**
-    * Creates a new instance.
-    *
-    * @param controller The controller that is used for all operations.
-    */
-    public View(Controller controller)
-    {
+     * Creates a new instance.
+     *
+     * @param controller The controller that is used for all operations.
+     */
+    public View(Controller controller) {
         this.controller = controller;
     }
 
     /**
      * Simulates a user input that generates calls to all system operations.
      */
+<<<<<<< HEAD
+    public void sampleExecution() {
+        System.out.println("Executed");
+    }
+=======
     public void sampleExecution()
     {
         int testPhoneNo = 1231231212;
         String testBikeSerialNo = "321liftoff";
         String testProblemDescription = "stuff broken";
+>>>>>>> refs/remotes/origin/main
 
         System.out.println("Sample execution started");
         System.out.println("Searching for customer with phone number: ");
@@ -36,5 +40,3 @@ public class View
         controller.createRepairOrder(testPhoneNo, testProblemDescription, testBikeSerialNo);
     }
 }
-
-
