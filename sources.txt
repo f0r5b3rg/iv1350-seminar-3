@@ -1,22 +1,10 @@
-src/main/java/se/kth/iv1350/repairelectricbike/model/Customer.java
 src/main/java/se/kth/iv1350/repairelectricbike/model/RepairOrder.java
 src/main/java/se/kth/iv1350/repairelectricbike/model/RepairTask.java
+src/main/java/se/kth/iv1350/repairelectricbike/model/Customer.java
 src/main/java/se/kth/iv1350/repairelectricbike/model/DiagnosticReport.java
 src/main/java/se/kth/iv1350/repairelectricbike/controller/Controller.java
-<<<<<<< HEAD
-src/main/java/se/kth/iv1350/repairelectricbike/startup/Main.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/CustomerRegistry.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/State.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/RepairTaskDTO.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/RepairOrderRegistry.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/RegistryCreator.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/Printer.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/RepairOrderDTO.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/CustomerDTO.java
-src/main/java/se/kth/iv1350/repairelectricbike/integration/BikeDTO.java
-=======
->>>>>>> refs/remotes/origin/main
 src/main/java/se/kth/iv1350/repairelectricbike/view/View.java
+src/main/java/se/kth/iv1350/repairelectricbike/integration/State.java
 src/main/java/se/kth/iv1350/repairelectricbike/integration/Printer.java
 src/main/java/se/kth/iv1350/repairelectricbike/integration/BikeDTO.java
 src/main/java/se/kth/iv1350/repairelectricbike/integration/RegistryCreator.java
