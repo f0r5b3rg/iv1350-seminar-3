@@ -41,10 +41,7 @@ public class CustomerRegistry {
     }
 
     private boolean hasPhoneNumber(int phoneNumber, CustomerData customer) {
-        if (phoneNumber == customer.phoneNumber) {
-            return true;
-        }
-        return false;
+        return phoneNumber == customer.phoneNumber;
     }
 
     private class CustomerData {
