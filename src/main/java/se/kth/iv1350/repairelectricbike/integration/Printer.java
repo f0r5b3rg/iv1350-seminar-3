@@ -10,7 +10,7 @@ public class Printer {
      *
      * @param RepairOrderDTO
      */
-    public void printRepairOrder(RepairOrderDTO repairOrder) {
-        System.out.println(repairOrder);
+    public void printRepairOrder(RepairOrderDTO repairOrderToPrint) {
+        System.out.println(repairOrderToPrint);
     }
 }

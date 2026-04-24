@@ -14,7 +14,7 @@ public final class CustomerDTO {
     private final List<BikeDTO> ownedBikes;
 
     /**
-     * Creates a new instance of a customer.
+     * Creates a new instance of a customer DTO.
      *
      * @param name        The customer's name.
      * @param email       The customer's email.

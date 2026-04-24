@@ -7,19 +7,20 @@ package se.kth.iv1350.repairelectricbike.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 
 class DiagnosticReport {
     private String diagnosticResult;
-    private List<RepairTask> repairTasks;
+    private List<RepairTaskDTO> repairTasks;
     private int totalCost;
 
     DiagnosticReport() {
         this.diagnosticResult = "";
-        this.repairTasks = new ArrayList<RepairTask>();
+        this.repairTasks = new ArrayList<RepairTaskDTO>();
         this.totalCost = totalCost;
     }
 
-    void addRepairTask(RepairTask repairTask) {
+    void addRepairTask(RepairTaskDTO repairTask) {
         repairTasks.add(repairTask);
     }
 }

@@ -14,10 +14,8 @@ public class RepairOrderDTO {
     private final BikeDTO bikeToRepair;
     private final String problemDescription;
     private final LocalDate estimatedCompletonDate;
-    private final String diagnosticReport;
-    private final List<RepairTaskDTO> repairTasks;
-    private final int totalCost;
     private final State state;
+    private final DiagnosticReportDTO diagnosticReport;
 
     /**
      * Creates a new instance of a repair order.
@@ -36,18 +34,16 @@ public class RepairOrderDTO {
      * @param state                   The current state of repair order.
      */
 
-    public RepairOrderDTO(int id, CustomerDTO customer, BikeDTO bikeToRepair, LocalDate estimatedCompletionDate,
-            String problemDescription, String diagnosticReport, List<RepairTaskDTO> repairTasks, int totalCost,
-            State state) {
+    public RepairOrderDTO(int id, CustomerDTO customer, BikeDTO bikeToRepair, 
+            String problemDescription, LocalDate estimatedCompletionDate,
+            State state, DiagnosticReportDTO diagnosticReport) {
         this.id = id;
         this.customer = customer;
         this.bikeToRepair = bikeToRepair;
-        this.estimatedCompletonDate = estimatedCompletionDate;
         this.problemDescription = problemDescription;
-        this.diagnosticReport = diagnosticReport;
-        this.repairTasks = repairTasks;
-        this.totalCost = totalCost;
+        this.estimatedCompletonDate = estimatedCompletionDate;
         this.state = state;
+        this.diagnosticReport = diagnosticReport;
     }
 
     @Override
@@ -56,11 +52,11 @@ public class RepairOrderDTO {
         builder.append("id: " + id + ", ");
         builder.append("customer: " + customer + ", ");
         builder.append("bikeToRepair: " + bikeToRepair + ", ");
-        builder.append("estimatedCompletionDate: " + estimatedCompletonDate + ", ");
         builder.append("problemDescription: " + problemDescription + ", ");
-        builder.append("diagnosticReport: " + diagnosticReport + ", ");
-        builder.append("repairTasks: " + repairTasks + ", ");
-        builder.append("totalCost: " + totalCost + ", ");
+        builder.append("estimatedCompletionDate: " + estimatedCompletonDate + ", ");
+        builder.append("diagnosticResult: " + diagnosticReport.getDiagnosticResult() + ", ");
+        builder.append("repairTasks: " + diagnosticReport.getRepairTasks() + ", ");
+        builder.append("totalCost: " + diagnosticReport.getTotalCost() + ", ");
         builder.append("state: " + state);
         return builder.toString();
     }
@@ -115,7 +111,7 @@ public class RepairOrderDTO {
      * 
      * @return the value of diagnostic report
      */
-    public String getDiagnoticReport() {
+    public DiagnosticReportDTO getDiagnoticReport() {
         return diagnosticReport;
     }
 
@@ -125,7 +121,7 @@ public class RepairOrderDTO {
      * @return the value of id
      */
     public List<RepairTaskDTO> getRepairTasks() {
-        return repairTasks;
+        return diagnosticReport.getRepairTasks();
     }
 
     /**
@@ -134,7 +130,7 @@ public class RepairOrderDTO {
      * @return the value of total cosr
      */
     public int getTotalCost() {
-        return totalCost;
+        return diagnosticReport.getTotalCost();
     }
 
     /**

@@ -1,6 +1,9 @@
 package se.kth.iv1350.repairelectricbike.controller;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+
 import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
@@ -9,7 +12,6 @@ import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
 import se.kth.iv1350.repairelectricbike.integration.State;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
-import java.time.LocalDate;
 
 /**
  * This is the application's only controller class. All calls to the model pass

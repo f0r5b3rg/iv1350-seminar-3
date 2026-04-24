@@ -24,25 +24,21 @@ public class RepairOrderRegistry {
         private int id;
         private CustomerDTO customer;
         private BikeDTO bikeToRepair;
-        private LocalDate estimatedCompletionDate;
         private String problemDescription;
-        private String diagnosticReport;
-        private List<RepairTaskDTO> repairTasks;
-        private int totalCost;
+        private LocalDate estimatedCompletionDate;
         private State state;
+        private DiagnosticReportDTO diagnosticReport;
 
-        public RepairOrderData(int id, CustomerDTO customer, BikeDTO bikeToRepair, LocalDate estimatedCompletionDate,
-                String problemDescription, String diagnosticReport, List<RepairTaskDTO> repairTasks, int totalCost,
-                State state) {
+        public RepairOrderData(int id, CustomerDTO customer, BikeDTO bikeToRepair, 
+                String problemDescription, LocalDate estimatedCompletionDate, 
+                State state, DiagnosticReportDTO diagnosticReport) {
             this.id = id;
             this.customer = customer;
             this.bikeToRepair = bikeToRepair;
-            this.estimatedCompletionDate = estimatedCompletionDate;
             this.problemDescription = problemDescription;
-            this.diagnosticReport = diagnosticReport;
-            this.repairTasks = repairTasks;
-            this.totalCost = totalCost;
+            this.estimatedCompletionDate = estimatedCompletionDate;
             this.state = state;
+            this.diagnosticReport = diagnosticReport;
         }
     }
 }

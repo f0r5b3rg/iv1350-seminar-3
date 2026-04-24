@@ -5,10 +5,10 @@ package se.kth.iv1350.repairelectricbike.startup;
  * application.
  */
 
+import se.kth.iv1350.repairelectricbike.view.View;
 import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.Printer;
 import se.kth.iv1350.repairelectricbike.controller.Controller;
-import se.kth.iv1350.repairelectricbike.view.View;
 
 public class Main {
     /**
