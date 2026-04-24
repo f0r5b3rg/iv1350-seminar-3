@@ -79,14 +79,15 @@ public class Controller {
 
 
     /**
-     * hmmmm
+     * Updates the current state of the repair order.
      *
      * @param repairOrderId The id of the repair order.
-     * @param newState ...
+     * @param newState The new state of the repair order.
      */
     public void updateState(int repairOrderId, State newState)
     {
-        //Coming soon
+        //repairOrderRegistry.updateState(repairOrderID, newState);
+        //väntar på implementation
     }
 
 
@@ -104,13 +105,15 @@ public class Controller {
 
 
     /**
-     * hmmmm
+     * Finds the repair order and prints it.
      *
      * @param repairOrderId The id of the repair order.
      */
     public void printRepairOrder(int repairOrderId)
     {
-        //Coming soon
+        //RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyId(repairOrderId);
+        //printer.printRepairOrder(repairOrderToPrint);
+        //väntar på implementation
     }
 
 
