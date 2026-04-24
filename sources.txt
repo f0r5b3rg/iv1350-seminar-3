@@ -1,4 +1,8 @@
 src/main/java/se/kth/iv1350/repairelectricbike/model/State.java
+src/main/java/se/kth/iv1350/repairelectricbike/model/Customer.java
+src/main/java/se/kth/iv1350/repairelectricbike/model/RepairOrder.java
+src/main/java/se/kth/iv1350/repairelectricbike/model/RepairTask.java
+src/main/java/se/kth/iv1350/repairelectricbike/model/DiagnosticReport.java
 src/main/java/se/kth/iv1350/repairelectricbike/controller/Controller.java
 src/main/java/se/kth/iv1350/repairelectricbike/startup/Main.java
 src/main/java/se/kth/iv1350/repairelectricbike/integration/CustomerRegistry.java

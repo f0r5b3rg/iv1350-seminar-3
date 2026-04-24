@@ -10,7 +10,6 @@ public class View
 {
     private Controller controller;
 
-
     /**
     * Creates a new instance.
     *
@@ -21,15 +20,21 @@ public class View
         this.controller = controller;
     }
 
-
     /**
      * Simulates a user input that generates calls to all system operations.
      */
-    public void sampleExcecution()
+    public void sampleExecution()
     {
-        System.out.println("Executed");
-    }
+        int testPhoneNo = 1231231212;
+        String testBikeSerialNo = "321liftoff";
+        String testProblemDescription = "stuff broken";
 
+        System.out.println("Sample execution started");
+        System.out.println("Searching for customer with phone number: ");
+        System.out.println(controller.searchCustomer(testPhoneNo));
+
+        controller.createRepairOrder(testPhoneNo, testProblemDescription, testBikeSerialNo);
+    }
 }
 
 

@@ -31,7 +31,7 @@ public class CustomerRegistry {
      * @return A customer with the matching phone number if found, else
      *         <code>null</code>.
      */
-    public CustomerDTO findCustomer(int searchedPhoneNumber) {
+    public CustomerDTO searchCustomer(int searchedPhoneNumber) {
         for (CustomerData customer : customers) {
             if (hasPhoneNumber(searchedPhoneNumber, customer)) {
                 return new CustomerDTO(customer.name, customer.email, customer.phoneNumber, customer.ownedBikes);
