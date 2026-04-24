@@ -25,7 +25,7 @@ public class RepairOrderRegistry {
         private int id;
         private CustomerDTO customer;
         private BikeDTO bikeToRepair;
-        private LocalDate estimatedCompletonDate;
+        private LocalDate estimatedCompletionDate;
         private String problemDescription;
         private String diagnosticReport;
         private List<RepairTaskDTO> repairTasks;
@@ -38,7 +38,7 @@ public class RepairOrderRegistry {
             this.id = id;
             this.customer = customer;
             this.bikeToRepair = bikeToRepair;
-            this.estimatedCompletonDate = estimatedCompletionDate;
+            this.estimatedCompletionDate = estimatedCompletionDate;
             this.problemDescription = problemDescription;
             this.diagnosticReport = diagnosticReport;
             this.repairTasks = repairTasks;

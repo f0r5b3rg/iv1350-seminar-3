@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.integration.*;
 import se.kth.iv1350.repairelectricbike.model.State;
+import se.kth.iv1350.repairelectricbike.model.RepairOrder;
 import java.time.LocalDate;
 
 /**
@@ -14,6 +15,8 @@ public class Controller {
     private RepairOrderRegistry repairOrderRegistry;
     private Printer printer;
 
+    // Keeps track of the repair order actively being handled.
+    private RepairOrder activeRepairOrder;
 
     /**
      * Creates a new instance.
@@ -35,9 +38,22 @@ public class Controller {
      */
     public CustomerDTO searchCustomer(int phoneNumber)
     {
-        return customerRegistry.findCustomer(phoneNumber);
+        return customerRegistry.searchCustomer(phoneNumber);
     }
 
+
+    /**
+     * Returns an int value which represents the customers repair order id.
+     *
+     * @param phoneNumber The phone number of the customer.
+     * @param problemDesc The description of the problems with the customers bike.
+     * @param bikeSerialNo The serial number of the customers bike.
+     */
+    public void createRepairOrder(int phoneNumber, String bikeSerialNo, String problemDesc)
+    {
+        CustomerDTO customer = searchCustomer(phoneNumber);
+        activeRepairOrder = new RepairOrder(customer, problemDesc, bikeSerialNo);
+    }
 
     /**
      * Returns a List of each repair order that is in the sought state
@@ -49,21 +65,6 @@ public class Controller {
         //return repairOrderRegistry.findRepairOrders(state);
         return null; //väntar på implementation
     }
-
-
-    /**
-     * Returns an int value which represents the customers repair order id.
-     *
-     * @param phoneNumber The phone number of the customer.
-     * @param problemDesc The description of the problems with the customers bike.
-     * @param bikeSerialNo The serial number of the customers bike.
-     */
-    public int createRepairOrder(int phoneNumber, String problemDesc, int bikeSerialNo)
-    {
-        //return repairOrderRegistry.createRepairOrder(int phoneNumber, String problemDesc, int bikeSerialNo)
-        return 0; //väntar på implementation
-    }
-
 
     /**
      * hmmmm
