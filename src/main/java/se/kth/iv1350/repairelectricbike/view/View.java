@@ -27,7 +27,7 @@ public class View
      */
     public void sampleExcecution()
     {
-
+        System.out.println("Executed");
     }
 
 }

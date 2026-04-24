@@ -7,6 +7,8 @@ package se.kth.iv1350.repairelectricbike.startup;
 
 import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.Printer;
+import se.kth.iv1350.repairelectricbike.controller.Controller;
+import se.kth.iv1350.repairelectricbike.view.View;
 
 public class Main {
     /**
@@ -18,7 +20,8 @@ public class Main {
     public static void main(String[] args) {
         RegistryCreator creator = new RegistryCreator();
         Printer printer = new Printer();
-        // Controller contr = new Controller(creator, printer);
-        // new View(contr).sampleExecution();
+        Controller contr = new Controller(creator, printer);
+        View temp = new View(contr);
+        temp.sampleExecution();
     }
 }
