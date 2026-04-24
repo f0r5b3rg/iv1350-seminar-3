@@ -21,7 +21,6 @@ public class Main {
         RegistryCreator creator = new RegistryCreator();
         Printer printer = new Printer();
         Controller contr = new Controller(creator, printer);
-        View temp = new View(contr);
-        temp.sampleExecution();
+        new View(contr).sampleExecution();
     }
 }
