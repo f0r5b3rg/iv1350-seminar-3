@@ -1,4 +1,4 @@
-package se.kth.iv1350.repairelectricbike.model;
+package se.kth.iv1350.repairelectricbike.integration;
 
 public enum State {
     NEWLY_CREATED,

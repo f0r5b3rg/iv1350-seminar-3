@@ -8,6 +8,7 @@ package se.kth.iv1350.repairelectricbike.model;
 import java.time.LocalDate;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
 import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
+import se.kth.iv1350.repairelectricbike.integration.State;
 
 public class RepairOrder {
     private int id;

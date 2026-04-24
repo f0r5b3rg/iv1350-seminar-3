@@ -1,8 +1,13 @@
 package se.kth.iv1350.repairelectricbike.controller;
 import java.util.ArrayList;
 import java.util.List;
-import se.kth.iv1350.repairelectricbike.integration.*;
-import se.kth.iv1350.repairelectricbike.model.State;
+import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
+import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
+import se.kth.iv1350.repairelectricbike.integration.Printer;
+import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.State;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
 import java.time.LocalDate;
 
@@ -30,7 +35,6 @@ public class Controller {
         this.printer = printer;
     }
 
-
     /**
      * Searches for an existing customer in the customRegistry.
      *
@@ -40,7 +44,6 @@ public class Controller {
     {
         return customerRegistry.searchCustomer(phoneNumber);
     }
-
 
     /**
      * Returns an int value which represents the customers repair order id.

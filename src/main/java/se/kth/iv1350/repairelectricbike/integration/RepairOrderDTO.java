@@ -7,14 +7,13 @@ package se.kth.iv1350.repairelectricbike.integration;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-import se.kth.iv1350.repairelectricbike.model.State;
 
 public class RepairOrderDTO {
     private final int id;
     private final CustomerDTO customer;
     private final BikeDTO bikeToRepair;
-    private final LocalDate estimatedCompletonDate;
     private final String problemDescription;
+    private final LocalDate estimatedCompletonDate;
     private final String diagnosticReport;
     private final List<RepairTaskDTO> repairTasks;
     private final int totalCost;

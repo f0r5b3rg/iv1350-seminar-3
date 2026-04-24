@@ -8,7 +8,6 @@ package se.kth.iv1350.repairelectricbike.integration;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-import se.kth.iv1350.repairelectricbike.model.State;
 
 public class RepairOrderRegistry {
     private List<RepairOrderData> repairOrders = new ArrayList<>();
