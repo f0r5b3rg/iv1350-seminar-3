@@ -23,15 +23,12 @@ public class RepairOrderDTO {
      * @param id                      The repair order's id.
      * @param customer                The information of the customer's.
      * @param bikeToRepair            The information of the bike to repair.
-     * @param estimatedCompletionDate The estimated completion date of the
-     *                                reparation.
      * @param problemDescription      The customer's problem description of the
      *                                bike.
-     * @param diagnosticReport        The technician's description of the bike's
-     *                                current state.
-     * @param repairTasks             The repair tasks needed for the bike.
-     * @param totalCost               The total cost of the reparation.
+     * @param estimatedCompletionDate The estimated completion date of the
+     *                                reparation.
      * @param state                   The current state of repair order.
+     * @param diagnosticReport        The data for the report's diagnostic report.
      */
 
     public RepairOrderDTO(int id, CustomerDTO customer, BikeDTO bikeToRepair,
@@ -48,17 +45,15 @@ public class RepairOrderDTO {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("id: " + id + ", ");
-        builder.append("customer: " + customer + ", ");
-        builder.append("bikeToRepair: " + bikeToRepair + ", ");
-        builder.append("problemDescription: " + problemDescription + ", ");
-        builder.append("estimatedCompletionDate: " + estimatedCompletonDate + ", ");
-        builder.append("diagnosticResult: " + diagnosticReport.getDiagnosticResult() + ", ");
-        builder.append("repairTasks: " + diagnosticReport.getRepairTasks() + ", ");
-        builder.append("totalCost: " + diagnosticReport.getTotalCost() + ", ");
-        builder.append("state: " + state);
-        return builder.toString();
+        return "id: " + id + ", " +
+                "customer: " + customer + ", " +
+                "bikeToRepair: " + bikeToRepair + ", " +
+                "problemDescription: " + problemDescription + ", " +
+                "estimatedCompletionDate: " + estimatedCompletonDate + ", " +
+                "diagnosticResult: " + diagnosticReport.getDiagnosticResult() + ", " +
+                "repairTasks: " + diagnosticReport.getRepairTasks() + ", " +
+                "totalCost: " + diagnosticReport.getTotalCost() + ", " +
+                "state: " + state;
     }
 
     /**

@@ -26,6 +26,10 @@ public class Customer {
         return null;
     }
 
+    public CustomerDTO getCustomerDTO() {
+        return customerDTO;
+    }
+
     /**
      * Get the customer's name.
      *
@@ -49,7 +53,7 @@ public class Customer {
      *
      * @return the customer's phone number.
      */
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.customerDTO.getPhoneNumber();
     }
 

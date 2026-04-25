@@ -17,7 +17,7 @@ public class DiagnosticReport {
     DiagnosticReport() {
         this.diagnosticResult = "";
         this.repairTasks = new ArrayList<RepairTaskDTO>();
-        this.totalCost = totalCost;
+        this.totalCost = 0;
     }
 
     void addRepairTask(RepairTaskDTO repairTask) {

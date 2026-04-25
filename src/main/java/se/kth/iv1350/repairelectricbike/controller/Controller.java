@@ -1,21 +1,17 @@
 package se.kth.iv1350.repairelectricbike.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
-
-import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
-import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
-import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
-import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
-import se.kth.iv1350.repairelectricbike.integration.Printer;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
-import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
 import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
+import se.kth.iv1350.repairelectricbike.integration.Printer;
+import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
 import se.kth.iv1350.repairelectricbike.integration.State;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
-import se.kth.iv1350.repairelectricbike.model.Customer;
-import se.kth.iv1350.repairelectricbike.model.DiagnosticReport;
 
 /**
  * This is the application's only controller class. All calls to the model pass
@@ -46,7 +42,7 @@ public class Controller {
      *
      * @param phoneNumber The phone number of the sought customer.
      */
-    public CustomerDTO searchCustomer(int phoneNumber) {
+    public CustomerDTO searchCustomer(String phoneNumber) {
         return customerRegistry.searchCustomer(phoneNumber);
     }
 
@@ -57,34 +53,22 @@ public class Controller {
      * @param problemDesc  The description of the problems with the customers bike.
      * @param bikeSerialNo The serial number of the customers bike.
      */
-    public void createRepairOrder(int phoneNumber, String bikeSerialNo, String problemDesc) {
+    public void createRepairOrder(String phoneNumber, String bikeSerialNo, String problemDesc) {
         CustomerDTO customer = searchCustomer(phoneNumber);
         activeRepairOrder = new RepairOrder(customer, problemDesc, bikeSerialNo);
     }
 
     public void saveActiveRepairOrder() {
-
-        DiagnosticReportDTO diagnosticReportToSave = new DiagnosticReportDTO(
-                activeRepairOrder.getDiagnosticReport().getDiagnosticResult(),
-                activeRepairOrder.getDiagnosticReport().getRepairTasks(),
-                activeRepairOrder.getDiagnosticReport().getTotalCost());
-
-        CustomerDTO customerToSave = new CustomerDTO(activeRepairOrder.getCustomer().getName(),
-                activeRepairOrder.getCustomer().getEmail(), activeRepairOrder.getCustomer().getPhoneNumber(),
-                activeRepairOrder.getCustomer().getOwnedBikes());
-
-        RepairOrderDTO toSave = new RepairOrderDTO(activeRepairOrder.getId(), customerToSave,
-                activeRepairOrder.getBikeToRepair(), activeRepairOrder.getProblemDescription(),
-                activeRepairOrder.getEstimatedCompletionDate(), activeRepairOrder.getState(), diagnosticReportToSave);
+        RepairOrderDTO toSave = activeRepairOrder.convertToDTO();
         repairOrderRegistry.addRepairOrder(toSave);
     }
 
-    public void saveCustomer(ArrayList<CustomerDTO> customer) {
+    public void saveCustomer(CustomerDTO customer) {
         customerRegistry.addCustomer(customer);
     }
 
     /**
-     * Returns a List of each repair order that is in the sought state
+     * Returns a List of each repair order that is in the sought state.
      *
      * @param state The state of the repair orders.
      */
@@ -147,5 +131,4 @@ public class Controller {
         // repairOrderRegistry.updateCompletionDate(repairOrderId, estimatedDate);
         // väntar på implementation
     }
-
 }

@@ -28,11 +28,9 @@ public final class BikeDTO {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("brand: " + brand + ", ");
-        builder.append("model: " + model + ", ");
-        builder.append("serialNo: " + serialNo);
-        return builder.toString();
+        return "brand: " + brand + ", " +
+                "model: " + model + ", " +
+                "serialNo: " + serialNo;
     }
 
     /**

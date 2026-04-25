@@ -1,5 +1,7 @@
 # IDE files
-.idea/
+*.idea/
+*.iml/
+*.project/
 
 # Compiled class file
 *.class
