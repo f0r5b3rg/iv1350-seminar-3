@@ -1,12 +1,11 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-/**
- * Contains information about a bike.
- */
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains information about a bike.
+ */
 public final class BikeDTO {
     private final String brand;
     private final String model;
@@ -28,11 +27,9 @@ public final class BikeDTO {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("brand: " + brand + ", ");
-        builder.append("model: " + model + ", ");
-        builder.append("serialNo: " + serialNo);
-        return builder.toString();
+        return "brand: " + brand + ", " +
+                "model: " + model + ", " +
+                "serialNo: " + serialNo;
     }
 
     /**

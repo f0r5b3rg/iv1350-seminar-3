@@ -1,15 +1,14 @@
 package se.kth.iv1350.repairelectricbike.model;
 
-/** 
- * Contains all data and methods for one customer.
- *
- */
-
 import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
 
+/**
+ * Contains all data and methods for one customer.
+ *
+ */
 public class Customer {
     private CustomerDTO customerDTO;
 
@@ -24,6 +23,10 @@ public class Customer {
             }
         }
         return null;
+    }
+
+    public CustomerDTO getCustomerDTO() {
+        return customerDTO;
     }
 
     /**
@@ -49,7 +52,7 @@ public class Customer {
      *
      * @return the customer's phone number.
      */
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.customerDTO.getPhoneNumber();
     }
 

@@ -22,10 +22,8 @@ public class RepairTaskDTO {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("repairTaskDescription: " + repairTaskDescription + ", ");
-        builder.append("costToRepair: " + costToRepair);
-        return builder.toString();
+        return "repairTaskDescription: " + repairTaskDescription + ", " +
+                "costToRepair: " + costToRepair;
     }
 
     /**

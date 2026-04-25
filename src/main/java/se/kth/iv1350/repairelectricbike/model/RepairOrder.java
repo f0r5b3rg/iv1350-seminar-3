@@ -1,15 +1,13 @@
 package se.kth.iv1350.repairelectricbike.model;
 
+import java.time.LocalDate;
+
+import se.kth.iv1350.repairelectricbike.integration.*;
+
 /**
  * Contains information about a repair task.
  *
  */
-
-import java.time.LocalDate;
-import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
-import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
-import se.kth.iv1350.repairelectricbike.integration.State;
-
 public class RepairOrder {
     private int id;
     private Customer customer;
@@ -27,6 +25,14 @@ public class RepairOrder {
         this.estimatedCompletionDate = LocalDate.now();
         this.state = State.NEWLY_CREATED;
         this.diagnosticReport = new DiagnosticReport();
+    }
+
+    public RepairOrderDTO convertToDTO() {
+        return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, convertToDTO(this.diagnosticReport));
+    }
+
+    private DiagnosticReportDTO convertToDTO(DiagnosticReport diagnosticReportDTO) {
+        return new DiagnosticReportDTO(diagnosticReportDTO.getDiagnosticResult(), diagnosticReportDTO.getRepairTasks(), diagnosticReportDTO.getTotalCost());
     }
 
     public int getId() {
