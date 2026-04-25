@@ -35,30 +35,65 @@ public class RepairOrder {
         return new DiagnosticReportDTO(diagnosticReportDTO.getDiagnosticResult(), diagnosticReportDTO.getRepairTasks(), diagnosticReportDTO.getTotalCost());
     }
 
+    /**
+     * Get the repair order's id.
+     * 
+     * @return the value of id.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Get the value of customer.
+     * 
+     * @return the value of customer.
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     * Get the value of the bike to repair. 
+     * 
+     * @return the value of the bike to repair 
+     */
     public BikeDTO getBikeToRepair() {
         return bikeToRepair;
     }
 
+    /**
+     * Get the value of the problem description.
+     * 
+     * @return the value of the problem description
+     */
     public String getProblemDescription() {
         return problemDescription;
     }
 
+    /**
+     * Get the value of the estimated completion date. 
+     * 
+     * @return the value of the estimated completion date. 
+     */
     public LocalDate getEstimatedCompletionDate() {
         return estimatedCompletionDate;
     }
 
+    /**
+     * Get the value of the state. 
+     * 
+     * @return the value of the state.
+     */
     public State getState() {
         return state;
     }
 
+    /**
+     * Get the value of the diagnostic report.
+     * 
+     * @return the value of the diagnostic report. 
+     */
     public DiagnosticReport getDiagnosticReport() {
         return diagnosticReport;
     }

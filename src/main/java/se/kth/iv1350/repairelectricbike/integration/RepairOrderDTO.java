@@ -56,63 +56,81 @@ public class RepairOrderDTO {
     }
 
     /**
-     * Get the value of id
+     * Get the repair order's id.
      * 
-     * @return the value of id
+     * @return the value of id.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Get the value of customer
+     * Get the value of customer.
      * 
-     * @return the value of customer
+     * @return the value of customer.
      */
     public CustomerDTO getCustomer() {
         return customer;
     }
 
     /**
-     * Get the value of the bike to repair
+     * Get the value of the bike to repair.
      * 
-     * @return the value of the bike to repair
+     * @return the value of the bike to repair.
      */
     public BikeDTO getBikeToRepair() {
         return bikeToRepair;
     }
 
     /**
-     * Get the value of date
+     * Get the value of date.
      * 
-     * @return the value of date as a LocalDate object
+     * @return the value of date as a LocalDate object.
      */
     public LocalDate getDate() {
         return estimatedCompletonDate;
     }
 
     /**
-     * Get the value of problem description
+     * Get the value of problem description.
      * 
-     * @return the value of problem description
+     * @return the value of problem description.
      */
     public String getProblemDescription() {
         return problemDescription;
     }
 
     /**
-     * Get the value of diagnostic report
+     * Get the value of the estimated completion date.
      * 
-     * @return the value of diagnostic report
+     * @return the value of the estimated completion date.
+     */
+    public LocalDate getEstimatedCompletionDate() {
+        return estimatedCompletonDate;
+    }
+
+    /**
+     * Get the value of state.
+     * 
+     * @return the value of state.
+     */
+    public State getState() {
+        return state;
+    }
+
+    /**
+     * Get the value of diagnostic report.
+     * 
+     * @return the value of diagnostic report.
      */
     public DiagnosticReportDTO getDiagnoticReport() {
         return diagnosticReport;
     }
 
     /**
-     * Get the value of id
+     * Get the list of repair tasks.
      * 
-     * @return the value of id
+     * @return the repair tasks.
      */
     public List<RepairTaskDTO> getRepairTasks() {
         return diagnosticReport.getRepairTasks();
@@ -126,14 +144,4 @@ public class RepairOrderDTO {
     public int getTotalCost() {
         return diagnosticReport.getTotalCost();
     }
-
-    /**
-     * Get the value of state
-     * 
-     * @return the value of state
-     */
-    public State getState() {
-        return state;
-    }
-
 }

@@ -23,14 +23,30 @@ public class DiagnosticReport {
         repairTasks.add(repairTask);
     }
 
+    /**
+     * Get the diagnostic result.
+     * 
+     * @return the diagnostic result. 
+     */
     public String getDiagnosticResult() {
         return diagnosticResult;
     }
 
+    /**
+     * Get the list of repair tasks.
+     * 
+     * @return the list of repair tasks.
+     */
     public List<RepairTaskDTO> getRepairTasks() {
         return repairTasks;
     }
+    
 
+    /**
+     * Get the total cost of all the repair tasks. 
+     * 
+     * @return the total cost.
+     */
     public int getTotalCost() {
         return totalCost;
     }

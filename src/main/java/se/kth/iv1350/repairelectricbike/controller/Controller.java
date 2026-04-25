@@ -38,7 +38,7 @@ public class Controller {
     }
 
     /**
-     * Searches for an existing customer in the customRegistry.
+     * Searches for an existing customer in the customerRegistry.
      *
      * @param phoneNumber The phone number of the sought customer.
      */

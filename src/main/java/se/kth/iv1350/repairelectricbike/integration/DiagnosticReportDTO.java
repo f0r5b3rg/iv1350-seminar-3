@@ -26,14 +26,29 @@ public class DiagnosticReportDTO {
         this.totalCost = totalCost;
     }
 
+    /**
+     * Get the diagnostic result.
+     * 
+     * @return the diagnostic result.
+     */
     public String getDiagnosticResult() {
         return this.diagnosticResult;
     }
 
+    /**
+     * Get the list of repair tasks.
+     * 
+     * @return the list of repair tasks.
+     */
     public List<RepairTaskDTO> getRepairTasks() {
         return this.repairTasks;
     }
 
+    /**
+     * Get the total cost of all the repair tasks.
+     * 
+     * @return the total cost.
+     */
     public int getTotalCost() {
         return this.totalCost;
     }
