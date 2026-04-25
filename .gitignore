@@ -30,3 +30,4 @@ replay_pid*
 
 # shell build script
 sources.txt
+out/
