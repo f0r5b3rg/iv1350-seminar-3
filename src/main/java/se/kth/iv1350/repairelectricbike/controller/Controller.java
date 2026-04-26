@@ -81,9 +81,9 @@ public class Controller {
      *
      * @param repairOrderId         The id of the repair order.
      * @param repairTaskDescription ...
-     * @param costOfRepair          ...
+     * @param costToRepair          ...
      */
-    public void addRepairTask(int repairOrderId, String repairTaskDescription, int costOfRepair) {
+    public void addRepairTask(int repairOrderId, String repairTaskDescription, int costToRepair) {
         // Coming soon
     }
 
