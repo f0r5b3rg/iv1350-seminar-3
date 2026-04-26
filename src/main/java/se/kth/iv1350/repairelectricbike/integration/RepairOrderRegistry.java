@@ -35,6 +35,14 @@ public class RepairOrderRegistry {
         return result;
     }
 
+    public void updateState(int repairOrderId, State newState) {
+        for (RepairOrderData repairOrder : repairOrders)
+        {
+            if (repairOrder.id == repairOrderId)
+                repairOrder.state = newState;
+        }
+    }
+
     private class RepairOrderData {
         private int id;
         private CustomerDTO customer;

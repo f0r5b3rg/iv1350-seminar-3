@@ -94,8 +94,7 @@ public class Controller {
      * @param newState      The new state of the repair order.
      */
     public void updateState(int repairOrderId, State newState) {
-        // repairOrderRegistry.updateState(repairOrderID, newState);
-        // väntar på implementation
+        repairOrderRegistry.updateState(repairOrderId, newState);
     }
 
     /**
