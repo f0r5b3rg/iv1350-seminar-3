@@ -1,5 +1,4 @@
 package se.kth.iv1350.repairelectricbike.integration;
-
 /**
  * Printer interface used for all printouts
  */
@@ -12,6 +11,38 @@ public class Printer {
      */
     public void printRepairOrder(RepairOrderDTO repairOrderToPrint) {
         //vad i repair ordern ska printas när metoden körs?
-        System.out.println(repairOrderToPrint);
+        String printableRepairOrder = createPrintableRepairOrder(repairOrderToPrint);
+        System.out.println(printableRepairOrder);
+    }
+
+    private String createPrintableRepairOrder(RepairOrderDTO repairOrderToPrint) {
+        StringBuilder builder = new StringBuilder();
+        appendLine(builder, "Repair order");
+        endSection(builder);
+
+        appendLine(builder, "Customer information: ");
+
+        builder.append(repairOrderToPrint.getCustomer().toString());
+        endSection(builder);
+        endSection(builder);
+
+
+        appendLine(builder, "Repair order information: ");
+
+        builder.append(repairOrderToPrint.toString());
+        endSection(builder);
+        endSection(builder);
+
+        return builder.toString();
+    }
+
+
+    private void appendLine(StringBuilder builder, String line) {
+        builder.append(line);
+        builder.append("\n");
+    }
+
+    private void endSection(StringBuilder builder) {
+        builder.append("\n");
     }
 }

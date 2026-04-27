@@ -44,15 +44,13 @@ public class RepairOrderDTO {
 
     @Override
     public String toString() {
-        return "id: " + id + ", " +
-                "customer: " + customer + ", " +
-                "bikeToRepair: " + bikeToRepair + ", " +
-                "problemDescription: " + problemDescription + ", " +
-                "estimatedCompletionDate: " + estimatedCompletonDate + ", " +
-                "diagnosticResult: " + diagnosticReport.getDiagnosticResult() + ", " +
-                "repairTasks: " + diagnosticReport.getRepairTasks() + ", " +
-                "totalCost: " + diagnosticReport.getTotalCost() + ", " +
-                "state: " + state;
+        return "  Bike To Repair: " + bikeToRepair + "\n" +
+                "  Problem description: " + problemDescription + "\n" +
+                "  Diagnosis result: " + diagnosticReport.getDiagnosticResult() + "\n" +
+                "  Repair tasks: " + diagnosticReport.getRepairTasks() + "\n" +
+                "  State: " + state + "\n" +
+                "  Estimated completion date: " + estimatedCompletonDate + "\n" +
+                "  Total cost: " + diagnosticReport.getTotalCost();
     }
 
     /**

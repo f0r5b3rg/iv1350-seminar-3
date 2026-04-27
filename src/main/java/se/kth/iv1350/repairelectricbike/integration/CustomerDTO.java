@@ -28,10 +28,10 @@ public class CustomerDTO {
 
     @Override
     public String toString() {
-        return "name: " + name + ", " +
-                "email: " + email + ", " +
-                "phoneNumber: " + phoneNumber + ", " +
-                "ownedBikes: " + ownedBikes;
+        return "  Name: " + name + "\n" +
+                "  Email: " + email + "\n" +
+                "  Phone number: " + phoneNumber + "\n" +
+                "  Owned bikes: " + ownedBikes;
     }
 
     /**

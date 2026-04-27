@@ -3,10 +3,7 @@ package se.kth.iv1350.repairelectricbike.view;
 import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.controller.Controller;
-import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
-import se.kth.iv1350.repairelectricbike.integration.State;
-import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
-import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+import se.kth.iv1350.repairelectricbike.integration.*;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire
@@ -72,5 +69,11 @@ public class View {
 
         // Finds all newly created repair orders and add to list.
         List<RepairOrderDTO> foundRepairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
+        //Test av printer, uppfyller typ vad som behövs utöver att fel data visas eller att data inte visas
+        System.out.println("Test \n");
+
+        Printer printer = new Printer();
+
+        printer.printRepairOrder(foundRepairOrders.getLast());
     }
 }
