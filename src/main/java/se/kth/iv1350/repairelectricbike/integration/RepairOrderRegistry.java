@@ -37,7 +37,11 @@ public class RepairOrderRegistry {
         return result;
     }
 
-
+    public void updateCompletionDate(int repairOrderId, LocalDate estimatedDate) {
+        RepairOrderData repairOrder = repairOrders.get(repairOrderId);
+        if (repairOrder != null)
+            repairOrder.estimatedCompletionDate = estimatedDate;
+    }
 
     public RepairOrderDTO getRepairOrderDTObyID(int repairOrderId)
     {

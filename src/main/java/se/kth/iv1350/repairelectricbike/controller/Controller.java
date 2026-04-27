@@ -124,7 +124,6 @@ public class Controller {
      * @param estimatedDate The new estimated completion date of the repair order.
      */
     public void updateCompletionDate(int repairOrderId, LocalDate estimatedDate) {
-        // repairOrderRegistry.updateCompletionDate(repairOrderId, estimatedDate);
-        // väntar på implementation
+        repairOrderRegistry.updateCompletionDate(repairOrderId, estimatedDate);
     }
 }

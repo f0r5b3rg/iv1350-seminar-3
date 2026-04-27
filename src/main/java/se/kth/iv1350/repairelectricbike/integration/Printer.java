@@ -11,6 +11,7 @@ public class Printer {
      * @param repairOrderToPrint   Contains the repair order data to be printed.
      */
     public void printRepairOrder(RepairOrderDTO repairOrderToPrint) {
+        //vad i repair ordern ska printas när metoden körs?
         System.out.println(repairOrderToPrint);
     }
 }
