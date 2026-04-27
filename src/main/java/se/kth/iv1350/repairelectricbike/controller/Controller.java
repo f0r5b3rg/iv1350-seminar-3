@@ -104,8 +104,7 @@ public class Controller {
      * @param diagnosticReport ...
      */
     public void updateDiagnosticReport(int repairOrderID, String diagnosticReport) {
-        // repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticReport);
-        // väntar på implementation
+        repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticReport);
     }
 
     /**

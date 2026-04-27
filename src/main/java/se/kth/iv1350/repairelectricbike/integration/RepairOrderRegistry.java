@@ -43,6 +43,18 @@ public class RepairOrderRegistry {
         }
     }
 
+    public void updateDiagnosticReport(int repairOrderID, String diagnosticReport) {
+        for (RepairOrderData repairOrder : repairOrders)
+            if (repairOrder.id == repairOrderID)
+            {
+                List<RepairTaskDTO> repairTasks = repairOrder.diagnosticReport.getRepairTasks();
+                int totalCost = repairOrder.diagnosticReport.getTotalCost();
+
+                repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticReport, repairTasks, totalCost);
+                break;
+            }
+    }
+
     private class RepairOrderData {
         private int id;
         private CustomerDTO customer;
