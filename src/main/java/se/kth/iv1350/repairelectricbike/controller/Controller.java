@@ -11,6 +11,7 @@ import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
 import se.kth.iv1350.repairelectricbike.integration.State;
+import se.kth.iv1350.repairelectricbike.model.DiagnosticReport;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
 
 /**
@@ -83,8 +84,9 @@ public class Controller {
      * @param repairTaskDescription ...
      * @param costToRepair          ...
      */
-    public void addRepairTask(int repairOrderId, String repairTaskDescription, int costToRepair) {
-        //coming soon
+    public void addRepairTask(String repairTaskDescription, int costToRepair) {
+        // activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
+        //benim löser
     }
 
     /**
@@ -114,7 +116,7 @@ public class Controller {
      */
     public void printRepairOrder(int repairOrderId) {
         RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyID(repairOrderId);
-        printer.printRepairOrder(repairOrderToPrint); //metoden är inte implementerad
+        printer.printRepairOrder(repairOrderToPrint); //metoden är inte implementerad //benim löser
     }
 
     /**

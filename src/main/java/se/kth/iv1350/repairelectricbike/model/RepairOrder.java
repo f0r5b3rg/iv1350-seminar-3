@@ -18,7 +18,7 @@ public class RepairOrder {
     private DiagnosticReport diagnosticReport;
 
     public RepairOrder(CustomerDTO customerDTO, String bikeSerialNo, String problemDescription) {
-        this.id = 0; // Implement ID generation.
+        this.id = RepairOrderRegistry.getRepairOrderCount();
         this.customer = new Customer(customerDTO);
         this.bikeToRepair = this.customer.getBikeFromSerialNo(bikeSerialNo);
         this.problemDescription = problemDescription;

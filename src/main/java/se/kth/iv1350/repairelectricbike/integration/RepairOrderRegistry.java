@@ -12,6 +12,7 @@ import java.util.List;
 import java.time.LocalDate;
 
 public class RepairOrderRegistry {
+    private static int repairOrderCount;
     private List<RepairOrderData> repairOrders;
 
     RepairOrderRegistry() {
@@ -23,6 +24,12 @@ public class RepairOrderRegistry {
                 repairOrderDTO.getBikeToRepair(),
                 repairOrderDTO.getProblemDescription(), repairOrderDTO.getDate(), repairOrderDTO.getState(),
                 repairOrderDTO.getDiagnoticReport()));
+        repairOrderCount += 1;
+    }
+
+    public static int getRepairOrderCount()
+    {
+        return repairOrderCount;
     }
 
     public List<RepairOrderDTO> findRepairOrders(State state) {
