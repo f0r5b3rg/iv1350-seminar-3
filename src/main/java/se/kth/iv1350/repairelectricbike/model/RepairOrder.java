@@ -18,7 +18,7 @@ public class RepairOrder {
     private DiagnosticReport diagnosticReport;
 
     public RepairOrder(CustomerDTO customerDTO, String bikeSerialNo, String problemDescription) {
-        this.id = RepairOrderRegistry.getRepairOrderCount(); // Implementera ID generering för sökning.
+        this.id = RepairOrderRegistry.getRepairOrderCount();
         this.customer = new Customer(customerDTO);
         this.bikeToRepair = this.customer.getBikeFromSerialNo(bikeSerialNo);
         this.problemDescription = problemDescription;
@@ -29,6 +29,12 @@ public class RepairOrder {
 
     public RepairOrderDTO convertToDTO() {
         return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, convertToDTO(this.diagnosticReport));
+    }
+
+    public void addRepairTask(String repairTaskDescription, int costToRepair)
+    {
+        RepairTaskDTO taskToAdd = new RepairTaskDTO(repairTaskDescription, costToRepair);
+        diagnosticReport.addRepairTask(taskToAdd);
     }
 
     private DiagnosticReportDTO convertToDTO(DiagnosticReport diagnosticReportDTO) {

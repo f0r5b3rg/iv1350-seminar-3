@@ -78,15 +78,13 @@ public class Controller {
     }
 
     /**
-     * hmmmm
+     * Adds a new repair task to the repair order and updates its total cost.
      *
-     * @param repairOrderId         The id of the repair order.
-     * @param repairTaskDescription ...
-     * @param costToRepair          ...
+     * @param repairTaskDescription Description of the new repairTask
+     * @param costToRepair          The cost of the new repairTask
      */
     public void addRepairTask(String repairTaskDescription, int costToRepair) {
-        // activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
-        //benim löser
+        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
     }
 
     /**

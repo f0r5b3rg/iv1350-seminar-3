@@ -21,6 +21,7 @@ public class DiagnosticReport {
 
     void addRepairTask(RepairTaskDTO repairTask) {
         repairTasks.add(repairTask);
+        totalCost += repairTask.getCostToRepair();
     }
 
     /**
