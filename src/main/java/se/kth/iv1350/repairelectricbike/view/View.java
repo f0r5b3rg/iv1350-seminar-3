@@ -63,7 +63,7 @@ public class View {
             // Adds customer to CustomerRegistry.
             controller.saveCustomer(customer);
             // Creates a repair order and sets it as active repair order.
-            controller.createRepairOrder(customer.getPhoneNumber(), "Bike inverted", customer.getOwnedBikes().getFirst().getSerialNo());
+            controller.createRepairOrder(customer.getPhoneNumber(), customer.getOwnedBikes().getFirst().getSerialNo(), "Bike inverted");
             // Saves active repair order.
             controller.saveActiveRepairOrder();
         }
