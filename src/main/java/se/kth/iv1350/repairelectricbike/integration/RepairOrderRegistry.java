@@ -5,6 +5,8 @@ package se.kth.iv1350.repairelectricbike.integration;
  * Currently simulates database retrieval by storing repair orders instead.
  */
 
+import se.kth.iv1350.repairelectricbike.model.RepairOrder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
@@ -35,24 +37,44 @@ public class RepairOrderRegistry {
         return result;
     }
 
-    public void updateState(int repairOrderId, State newState) {
+
+
+    public RepairOrderDTO getRepairOrderDTObyID(int repairOrderId)
+    {
         for (RepairOrderData repairOrder : repairOrders)
         {
             if (repairOrder.id == repairOrderId)
-                repairOrder.state = newState;
+                return new RepairOrderDTO(repairOrder.id, repairOrder.customer, repairOrder.bikeToRepair,
+                        repairOrder.problemDescription, repairOrder.estimatedCompletionDate, repairOrder.state,
+                        repairOrder.diagnosticReport);
         }
+        return null;
+    }
+
+    public void updateState(int repairOrderID, State newState) {
+        RepairOrderData repairOrder = repairOrders.get(repairOrderID);
+        if (repairOrder != null)
+            repairOrder.state = newState;
     }
 
     public void updateDiagnosticReport(int repairOrderID, String diagnosticReport) {
-        for (RepairOrderData repairOrder : repairOrders)
-            if (repairOrder.id == repairOrderID)
-            {
-                List<RepairTaskDTO> repairTasks = repairOrder.diagnosticReport.getRepairTasks();
-                int totalCost = repairOrder.diagnosticReport.getTotalCost();
+        RepairOrderData repairOrder = repairOrders.get(repairOrderID);
 
-                repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticReport, repairTasks, totalCost);
-                break;
-            }
+        if (repairOrder != null)
+        {
+            List<RepairTaskDTO> repairTasks = repairOrder.diagnosticReport.getRepairTasks();
+            int totalCost = repairOrder.diagnosticReport.getTotalCost();
+            repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticReport, repairTasks, totalCost);
+        }
+    }
+
+    private RepairOrderData getRepairOrderById(int repairOrderId)
+    {
+        for (RepairOrderData repairOrder : repairOrders)
+        {
+            return repairOrder;
+        }
+        return null;
     }
 
     private class RepairOrderData {

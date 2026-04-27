@@ -113,10 +113,8 @@ public class Controller {
      * @param repairOrderId The id of the repair order.
      */
     public void printRepairOrder(int repairOrderId) {
-        // RepairOrderDTO repairOrderToPrint =
-        // repairOrderRegistry.getRepairOrderDTObyId(repairOrderId);
-        // printer.printRepairOrder(repairOrderToPrint);
-        // väntar på implementation
+        RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyID(repairOrderId);
+        printer.printRepairOrder(repairOrderToPrint);
     }
 
     /**
