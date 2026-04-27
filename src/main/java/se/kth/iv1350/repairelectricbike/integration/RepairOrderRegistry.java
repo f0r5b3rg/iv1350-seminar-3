@@ -61,14 +61,14 @@ public class RepairOrderRegistry {
             repairOrder.state = newState;
     }
 
-    public void updateDiagnosticReport(int repairOrderID, String diagnosticReport) {
+    public void updateDiagnosticReport(int repairOrderID, String diagnosticResult) {
         RepairOrderData repairOrder = repairOrders.get(repairOrderID);
 
         if (repairOrder != null)
         {
             List<RepairTaskDTO> repairTasks = repairOrder.diagnosticReport.getRepairTasks();
             int totalCost = repairOrder.diagnosticReport.getTotalCost();
-            repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticReport, repairTasks, totalCost);
+            repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticResult, repairTasks, totalCost);
         }
     }
 

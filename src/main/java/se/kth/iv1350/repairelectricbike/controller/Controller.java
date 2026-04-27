@@ -84,7 +84,7 @@ public class Controller {
      * @param costToRepair          ...
      */
     public void addRepairTask(int repairOrderId, String repairTaskDescription, int costToRepair) {
-        // Coming soon
+        //coming soon
     }
 
     /**
@@ -103,8 +103,8 @@ public class Controller {
      * @param repairOrderID    The id of the repair order.
      * @param diagnosticReport ...
      */
-    public void updateDiagnosticReport(int repairOrderID, String diagnosticReport) {
-        repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticReport);
+    public void updateDiagnosticReport(int repairOrderID, String diagnosticResult) {
+        repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticResult);
     }
 
     /**
