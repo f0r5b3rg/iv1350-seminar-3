@@ -54,7 +54,7 @@ public class Controller {
      * @param problemDesc  The description of the problems with the customers bike.
      * @param bikeSerialNo The serial number of the customers bike.
      */
-    public void createRepairOrder(String phoneNumber, String bikeSerialNo, String problemDesc) {
+    public void createRepairOrder(String phoneNumber, String problemDesc, String bikeSerialNo)  {
         CustomerDTO customer = searchCustomer(phoneNumber);
         activeRepairOrder = new RepairOrder(customer, problemDesc, bikeSerialNo);
     }
