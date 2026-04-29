@@ -63,6 +63,7 @@ public class CustomerDTO {
 
     /**
      * Get a list of the customer's owned bikes.
+     * @param i 
      *
      * @return a list containing the customer's owned bikes.
      */

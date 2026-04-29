@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import se.kth.iv1350.repairelectricbike.controller.*;
-import se.kth.iv1350.repairelectricbike.model.*;
 import se.kth.iv1350.repairelectricbike.integration.*;
 
 public class ControllerTest {
@@ -21,12 +20,11 @@ public class ControllerTest {
     private List<BikeDTO> bikes;
     private CustomerDTO customer;
     private RepairOrderDTO repairOrder;
+    private DiagnosticReportDTO diagnosticReport;
 
 
-    /**
-     * Setups the registries and controller, 
-     * creates one customer and repair order and saves it in the respectively registry.
-     */
+    //Setups the registries and controller, 
+    // creates one customer and repair order and saves it in the respectively registry.
     @Before
     public void setUp() {
         creator = new RegistryCreator();
@@ -38,49 +36,34 @@ public class ControllerTest {
         customer = new CustomerDTO("Douglas Andersson", "Doggelito1337@gmail.com", "07676767", bikes);
         creator.getCustomerRegistry().addCustomer(customer);
 
-        repairOrder = new RepairOrderDTO(0, customer, bikes.get(0), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, null);
+        diagnosticReport = new DiagnosticReportDTO(null, null, 0);
+        repairOrder = new RepairOrderDTO(0, customer, bikes.get(0), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, diagnosticReport);
         creator.getRepairOrderRegistry().addRepairOrder(repairOrder);
-
-
     }
-
-    @Test
-    public void testAddRepairTask() {
-
-    }
-
-    @Test
-    public void testCreateRepairOrder() {
-
-    }
-
-    @Test
-    public void testFindRepairOrders() {
-        List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
-
-
-
-    }
-
-    @Test
-    public void testPrintRepairOrder() {
-
-    }
-
-    @Test
-    public void testSaveActiveRepairOrder() {
-
-    }
-
+        
     @Test
     public void testSearchCustomer() {
         CustomerDTO result = controller.searchCustomer("07676767");
-
         Objects.equals(customer, result); 
     }
 
     @Test
-    public void testSaveAndSearchCustomer() {
+    public void testCreateandSaveActiveRepairOrder() {
+        String problemDesc = "För lite öl på styret";
+        controller.createRepairOrder(customer.getPhoneNumber(), bikes.get(1).getSerialNo(), problemDesc);
+        controller.saveActiveRepairOrder();
+
+        List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
+        RepairOrderDTO result = repairOrders.get(repairOrders.size() - 1);
+
+        assertEquals(customer.getPhoneNumber(), result.getCustomer().getPhoneNumber());
+        assertEquals(problemDesc, result.getProblemDescription());
+        assertEquals(bikes.get(1).getSerialNo(), result.getBikeToRepair().getSerialNo());
+        assertEquals(State.NEWLY_CREATED, result.getState());
+    }
+
+    @Test
+    public void testSaveCustomer() {
         List<BikeDTO> bikes = new ArrayList<BikeDTO>(List.of(new BikeDTO("Dalahäst", "Hofors2000", "123gäng456")));
         CustomerDTO customerToSave = new CustomerDTO("Linus Sandin", "sandalen67@hotmail.com", "07696969", bikes);
 
@@ -92,25 +75,53 @@ public class ControllerTest {
     }
 
     @Test
-    public void testUpdateCompletionDate() {
-        LocalDate newDate = LocalDate.of(2026, 04, 29);
+    public void testFindRepairOrders() {
+        List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
 
-        controller.updateCompletionDate(0, newDate);
+        assertEquals(1, repairOrders.size());
 
-        assertEquals(newDate, repairOrder.getDate());
+        for(RepairOrderDTO order : repairOrders)
+            assertEquals(State.NEWLY_CREATED, order.getState());
     }
 
+    // Jag får inte ihop denna, jag gav upp. Den luktar till och med illa :(
     @Test
-    public void testUpdateDiagnosticReport() {
+    public void testAddRepairTask() {
+        String repairTaskProbDesc = "Problem löst";
+        int costToRepair = 6767;
 
+        controller.createRepairOrder(customer.getPhoneNumber() ,bikes.get(1).getSerialNo(), "Problem");
+        controller.addRepairTask(repairTaskProbDesc, costToRepair);
+        controller.saveActiveRepairOrder();
+
+        DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(1).getDiagnoticReport();
+
+        assertEquals(repairTaskProbDesc, result.getRepairTasks().get(0).getRepairTaskDescription());
+        assertEquals(costToRepair, result.getRepairTasks().get(0).getCostToRepair());
     }
 
     @Test
     public void testUpdateState() {
         State newState = State.ACCEPTED;
-        RepairOrderDTO repairOrderToUpdate = creator.getRepairOrderRegistry().getRepairOrderDTObyID(0);
-        controller.updateState(repairOrderToUpdate.getId(), newState);
 
-        assertEquals(State.ACCEPTED, repairOrderToUpdate.getState());
+        controller.updateState(0, newState);
+
+        assertEquals(State.ACCEPTED, creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getState());
+    }
+
+    @Test
+    public void testUpdateDiagnosticReport() {
+        creator.getRepairOrderRegistry().updateDiagnosticReport(0, "Lol");
+
+        assertEquals("Lol", creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getDiagnoticReport().getDiagnosticResult());
+    }
+
+
+    @Test
+    public void testUpdateCompletionDate() {
+        LocalDate newDate = LocalDate.of(2026, 04, 29);
+        controller.updateCompletionDate(0, newDate);
+
+        assertEquals(newDate, creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getDate());
     }
 }

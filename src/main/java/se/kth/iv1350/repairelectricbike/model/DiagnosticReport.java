@@ -3,6 +3,7 @@ package se.kth.iv1350.repairelectricbike.model;
 import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
+import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
 
 /**
  * Contains diagnostic report information concerning a repair order
@@ -22,6 +23,10 @@ public class DiagnosticReport {
     void addRepairTask(RepairTaskDTO repairTask) {
         repairTasks.add(repairTask);
         totalCost += repairTask.getCostToRepair();
+    }
+
+    public DiagnosticReportDTO ConvertToDTO() {
+        return new DiagnosticReportDTO(this.diagnosticResult, this.repairTasks, this.totalCost);
     }
 
     /**

@@ -51,12 +51,12 @@ public class Controller {
      * Returns an int value which represents the customers repair order id.
      *
      * @param phoneNumber  The phone number of the customer.
-     * @param problemDesc  The description of the problems with the customers bike.
      * @param bikeSerialNo The serial number of the customers bike.
+     * @param problemDesc  The description of the problems with the customers bike.
      */
-    public void createRepairOrder(String phoneNumber, String problemDesc, String bikeSerialNo)  {
+    public void createRepairOrder(String phoneNumber, String bikeSerialNo, String problemDesc)  {
         CustomerDTO customer = searchCustomer(phoneNumber);
-        activeRepairOrder = new RepairOrder(customer, problemDesc, bikeSerialNo);
+        activeRepairOrder = new RepairOrder(customer, bikeSerialNo, problemDesc);
     }
 
     public void saveActiveRepairOrder() {

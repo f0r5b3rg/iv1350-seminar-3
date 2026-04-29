@@ -28,17 +28,13 @@ public class RepairOrder {
     }
 
     public RepairOrderDTO convertToDTO() {
-        return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, convertToDTO(this.diagnosticReport));
+        return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, this.diagnosticReport.ConvertToDTO());
     }
 
     public void addRepairTask(String repairTaskDescription, int costToRepair)
     {
         RepairTaskDTO taskToAdd = new RepairTaskDTO(repairTaskDescription, costToRepair);
         diagnosticReport.addRepairTask(taskToAdd);
-    }
-
-    private DiagnosticReportDTO convertToDTO(DiagnosticReport diagnosticReportDTO) {
-        return new DiagnosticReportDTO(diagnosticReportDTO.getDiagnosticResult(), diagnosticReportDTO.getRepairTasks(), diagnosticReportDTO.getTotalCost());
     }
 
     /**
