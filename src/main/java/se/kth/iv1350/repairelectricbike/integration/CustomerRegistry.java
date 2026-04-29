@@ -10,7 +10,7 @@ import java.util.List;
 public class CustomerRegistry {
   private List<CustomerData> customers;
 
-  CustomerRegistry() {
+  public CustomerRegistry() {
     this.customers = new ArrayList<CustomerData>();
   }
 
