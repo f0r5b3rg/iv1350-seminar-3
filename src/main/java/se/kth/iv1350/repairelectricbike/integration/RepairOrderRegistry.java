@@ -44,17 +44,17 @@ public class RepairOrderRegistry {
         return result;
     }
 
-    public void updateCompletionDate(int repairOrderId, LocalDate estimatedDate) {
-        RepairOrderData repairOrder = repairOrders.get(repairOrderId);
+    public void updateCompletionDate(int repairOrderID, LocalDate estimatedDate) {
+        RepairOrderData repairOrder = repairOrders.get(repairOrderID);
         if (repairOrder != null)
             repairOrder.estimatedCompletionDate = estimatedDate;
     }
 
-    public RepairOrderDTO getRepairOrderDTObyID(int repairOrderId)
+    public RepairOrderDTO getRepairOrderDTObyID(int repairOrderID)
     {
         for (RepairOrderData repairOrder : repairOrders)
         {
-            if (repairOrder.id == repairOrderId)
+            if (repairOrder.id == repairOrderID)
                 return new RepairOrderDTO(repairOrder.id, repairOrder.customer, repairOrder.bikeToRepair,
                         repairOrder.problemDescription, repairOrder.estimatedCompletionDate, repairOrder.state,
                         repairOrder.diagnosticReport);
@@ -79,7 +79,7 @@ public class RepairOrderRegistry {
         }
     }
 
-    private RepairOrderData getRepairOrderById(int repairOrderId)
+    private RepairOrderData getRepairOrderById(int repairOrderID)
     {
         for (RepairOrderData repairOrder : repairOrders)
         {

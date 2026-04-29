@@ -90,11 +90,11 @@ public class Controller {
     /**
      * Updates the current state of the repair order.
      *
-     * @param repairOrderId The id of the repair order.
+     * @param repairOrderID The id of the repair order.
      * @param newState      The new state of the repair order.
      */
-    public void updateState(int repairOrderId, State newState) {
-        repairOrderRegistry.updateState(repairOrderId, newState);
+    public void updateState(int repairOrderID, State newState) {
+        repairOrderRegistry.updateState(repairOrderID, newState);
     }
 
     /**
@@ -110,20 +110,20 @@ public class Controller {
     /**
      * Finds the repair order and prints it.
      *
-     * @param repairOrderId The id of the repair order.
+     * @param repairOrderID The id of the repair order.
      */
-    public void printRepairOrder(int repairOrderId) {
-        RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyID(repairOrderId);
+    public void printRepairOrder(int repairOrderID) {
+        RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyID(repairOrderID);
         printer.printRepairOrder(repairOrderToPrint); //metoden är inte implementerad //benim löser
     }
 
     /**
      * Updates the estimated completion date of the repair order.
      *
-     * @param repairOrderId The id of the repair order.
+     * @param repairOrderID The id of the repair order.
      * @param estimatedDate The new estimated completion date of the repair order.
      */
-    public void updateCompletionDate(int repairOrderId, LocalDate estimatedDate) {
-        repairOrderRegistry.updateCompletionDate(repairOrderId, estimatedDate);
+    public void updateCompletionDate(int repairOrderID, LocalDate estimatedDate) {
+        repairOrderRegistry.updateCompletionDate(repairOrderID, estimatedDate);
     }
 }
