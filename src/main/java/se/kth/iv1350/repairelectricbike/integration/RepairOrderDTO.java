@@ -146,7 +146,7 @@ public class RepairOrderDTO {
     /**
      * Get the value of total cost
      * 
-     * @return the value of total cosr
+     * @return the value of total cost
      */
     public int getTotalCost() {
         return diagnosticReport.getTotalCost();

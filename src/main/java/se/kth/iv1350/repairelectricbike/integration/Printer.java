@@ -28,7 +28,7 @@ public class Printer {
 
         appendLine(builder, "Repair order information: ");
 
-        builder.append(repairOrderToPrint.toString());
+        builder.append(repairOrderToPrint);
         endSection(builder);
         endSection(builder);
 

@@ -1,15 +1,10 @@
 package se.kth.iv1350.repairelectricbike.controller;
 
+import se.kth.iv1350.repairelectricbike.integration.*;
+import se.kth.iv1350.repairelectricbike.model.RepairOrder;
+
 import java.time.LocalDate;
 import java.util.List;
-import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
-import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
-import se.kth.iv1350.repairelectricbike.integration.Printer;
-import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
-import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
-import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
-import se.kth.iv1350.repairelectricbike.integration.State;
-import se.kth.iv1350.repairelectricbike.model.RepairOrder;
 
 /**
  * This is the application's only controller class. All calls to the model pass
