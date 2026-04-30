@@ -1,4 +1,4 @@
-package main.test.model;
+package test.java.se.kth.iv1350.repairelectricbike.model;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import se.kth.iv1350.repairelectricbike.integration.*;
 public class RepairOrderTest {
     private RegistryCreator creator;
     private RepairOrderDTO repairOrder;
-    
+
     @Test
     public void testConvertToDTO() {
 
