@@ -1,11 +1,11 @@
 package se.kth.iv1350.repairelectricbike.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import org.junit.After;
 import org.junit.Before;
@@ -37,7 +37,7 @@ public class ControllerTest {
         creator.getCustomerRegistry().addCustomer(customer);
 
         diagnosticReport = new DiagnosticReportDTO(null, null, 0);
-        repairOrder = new RepairOrderDTO(0, customer, bikes.get(0), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, diagnosticReport);
+        repairOrder = new RepairOrderDTO(0, customer, bikes.getFirst(), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, diagnosticReport);
         creator.getRepairOrderRegistry().addRepairOrder(repairOrder);
     }
 
@@ -57,17 +57,17 @@ public class ControllerTest {
     public void testSearchCustomer()
     {
         CustomerDTO result = controller.searchCustomer("07676767");
-        Objects.equals(customer, result);
+        assertTrue(customer.equals(result));
     }
 
     @Test
-    public void testCreateandSaveActiveRepairOrder() {
+    public void testCreateAndSaveActiveRepairOrder() {
         String problemDesc = "För lite öl på styret";
         controller.createRepairOrder(customer.getPhoneNumber(), bikes.get(1).getSerialNo(), problemDesc);
         controller.saveActiveRepairOrder();
 
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
-        RepairOrderDTO result = repairOrders.get(repairOrders.size() - 1);
+        RepairOrderDTO result = repairOrders.getLast();
 
         assertEquals(customer.getPhoneNumber(), result.getCustomer().getPhoneNumber());
         assertEquals(problemDesc, result.getProblemDescription());
@@ -77,14 +77,13 @@ public class ControllerTest {
 
     @Test
     public void testSaveCustomer() {
-        List<BikeDTO> bikes = new ArrayList<BikeDTO>(List.of(new BikeDTO("Dalahäst", "Hofors2000", "123gäng456")));
+        List<BikeDTO> bikes = new ArrayList<>(List.of(new BikeDTO("Dalahäst", "Hofors2000", "123gäng456")));
         CustomerDTO customerToSave = new CustomerDTO("Linus Sandin", "sandalen67@hotmail.com", "07696969", bikes);
 
         controller.saveCustomer(customerToSave);
-
         CustomerDTO result = controller.searchCustomer("07696969");
 
-        Objects.equals(customerToSave, result);
+        assertTrue(customerToSave.equals(result));
     }
 
     @Test
@@ -110,8 +109,8 @@ public class ControllerTest {
 
         DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(newId).getDiagnosticReport();
 
-        assertEquals(repairTaskProbDesc, result.getRepairTasks().get(0).getRepairTaskDescription());
-        assertEquals(costToRepair, result.getRepairTasks().get(0).getCostToRepair());
+        assertEquals(repairTaskProbDesc, result.getRepairTasks().getFirst().getRepairTaskDescription());
+        assertEquals(costToRepair, result.getRepairTasks().getFirst().getCostToRepair());
     }
 
     @Test

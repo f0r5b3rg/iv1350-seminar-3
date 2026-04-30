@@ -23,7 +23,7 @@ public class RepairOrderRegistryTest {
     @Before
     public void setUp() {
         creator = new RegistryCreator();
-        bikes = new ArrayList<BikeDTO>( List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
+        bikes = new ArrayList<>(List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
         customer = new CustomerDTO("Frödinge", "ost@kaka.se", "112", bikes);
         repairOrder = new RepairOrder(customer, "123Drygt", "Bell is broken").convertToDTO();
 
@@ -51,7 +51,7 @@ public class RepairOrderRegistryTest {
         List<RepairOrderDTO> repairOrders = repairOrderRegistry.findRepairOrders(State.NEWLY_CREATED);
         
         assertEquals(2, repairOrders.size());
-        boolean result = repairOrder.equals(repairOrders.get(0));
+        boolean result = repairOrder.equals(repairOrders.getFirst());
         assertTrue(result );
     }
 

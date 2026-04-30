@@ -19,7 +19,7 @@ public class CustomerRegistryTest {
     @Before
     public void setUp() {
         creator = new RegistryCreator();
-        bikes = new ArrayList<BikeDTO>( List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
+        bikes = new ArrayList<>(List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
         customer = new CustomerDTO("Frödinge", "ost@kaka.se", "112", bikes);
         customerRegistry = creator.getCustomerRegistry();
 
