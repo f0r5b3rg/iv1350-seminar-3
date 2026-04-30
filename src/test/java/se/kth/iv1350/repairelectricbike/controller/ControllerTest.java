@@ -24,7 +24,7 @@ public class ControllerTest {
 
 
     //Setups the registries and controller, 
-    // creates one customer and repair order and saves it in the respectively registry.
+    // creates one customer and repair order and saves it in the respective registry.
     @Before
     public void setUp() {
         creator = new RegistryCreator();
