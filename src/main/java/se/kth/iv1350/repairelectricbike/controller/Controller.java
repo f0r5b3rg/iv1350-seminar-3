@@ -111,7 +111,7 @@ public class Controller {
      */
     public void printRepairOrder(int repairOrderID) {
         RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyID(repairOrderID);
-        printer.printRepairOrder(repairOrderToPrint); //metoden är inte implementerad //benim löser
+        printer.printRepairOrder(repairOrderToPrint);
     }
 
     /**

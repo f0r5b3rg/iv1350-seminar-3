@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Contains all calls to the data store with registered customers. Currently simulates database
+ * Contains all calls to the data store with registered customers. Currently, simulates database
  * retrieval by storing customers instead.
  */
 public class CustomerRegistry {
   private List<CustomerData> customers;
 
   public CustomerRegistry() {
-    this.customers = new ArrayList<CustomerData>();
+    this.customers = new ArrayList<>();
   }
 
   public void addCustomer(CustomerDTO customer) {

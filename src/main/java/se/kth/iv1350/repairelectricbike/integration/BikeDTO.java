@@ -1,8 +1,5 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Contains information about a bike.
  */

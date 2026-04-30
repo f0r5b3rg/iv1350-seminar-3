@@ -2,7 +2,6 @@ package se.kth.iv1350.repairelectricbike.integration;
 
 /**
  * Contains information about a diagnostic report.
- *
  */
 
 import java.util.ArrayList;
