@@ -1,9 +1,9 @@
 package se.kth.iv1350.repairelectricbike.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+
+import java.util.List;
 
 /**
  * Contains all data and methods for one customer.

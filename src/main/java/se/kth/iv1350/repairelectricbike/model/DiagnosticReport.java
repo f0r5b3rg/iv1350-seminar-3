@@ -1,9 +1,10 @@
 package se.kth.iv1350.repairelectricbike.model;
 
+import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
+
 import java.util.ArrayList;
 import java.util.List;
-import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
-import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
 
 /**
  * Contains diagnostic report information concerning a repair order

@@ -1,8 +1,8 @@
 package se.kth.iv1350.repairelectricbike.model;
 
-import java.time.LocalDate;
-
 import se.kth.iv1350.repairelectricbike.integration.*;
+
+import java.time.LocalDate;
 
 /**
  * Contains information about a repair task.
