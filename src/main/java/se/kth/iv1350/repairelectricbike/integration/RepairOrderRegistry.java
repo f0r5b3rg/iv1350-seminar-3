@@ -1,8 +1,8 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-/**
- * Contains all calls to the data store with all repair orders.
- * Currently simulates database retrieval by storing repair orders instead.
+/*
+  Contains all calls to the data store with all repair orders.
+  Currently simulates database retrieval by storing repair orders instead.
  */
 
 import java.util.ArrayList;
@@ -28,6 +28,11 @@ public class RepairOrderRegistry {
     public static int getRepairOrderCount()
     {
         return repairOrderCount;
+    }
+
+    public static void setRepairOrderCount(int newCount)
+    {
+        repairOrderCount = newCount;
     }
 
     public List<RepairOrderDTO> findRepairOrders(State state) {

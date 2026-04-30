@@ -37,6 +37,7 @@ public class RepairOrderRegistryTest {
     @After
     public void tearDown()
     {
+        RepairOrderRegistry.setRepairOrderCount(0);
         creator = null;
         customer = null;
         repairOrder = null;
@@ -67,7 +68,6 @@ public class RepairOrderRegistryTest {
     @Test
     public void testGetRepairOrderCount() {
         int count = RepairOrderRegistry.getRepairOrderCount();
-
         assertEquals(1, count);        
     }
 
