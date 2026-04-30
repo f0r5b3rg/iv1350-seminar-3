@@ -33,7 +33,17 @@ public class RepairOrderRegistryTest {
         customerRegistry.addCustomer(customer);
         repairOrderRegistry.addRepairOrder(repairOrder);
     }
-    
+
+    @After
+    public void tearDown()
+    {
+        creator = null;
+        customer = null;
+        repairOrder = null;
+        bikes = null;
+        repairOrderRegistry =  null;
+    }
+
     @Test
     public void testAddRepairOrder() {
         RepairOrderDTO newRepairOrder = new RepairOrder(customer, "123Drygt", "Bell is broken again").convertToDTO();

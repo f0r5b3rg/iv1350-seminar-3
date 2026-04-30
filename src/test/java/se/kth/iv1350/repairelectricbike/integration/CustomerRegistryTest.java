@@ -25,6 +25,15 @@ public class CustomerRegistryTest {
         customerRegistry.addCustomer(customer);
     }
 
+    @After
+    public void tearDown()
+    {
+        creator = null;
+        customer = null;
+        bikes = null;
+        customerRegistry = null;
+    }
+
     @Test
     public void testAddCustomer() {
         customerRegistry.addCustomer(customer);

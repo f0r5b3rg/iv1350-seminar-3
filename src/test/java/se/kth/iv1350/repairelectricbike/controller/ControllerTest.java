@@ -39,11 +39,24 @@ public class ControllerTest {
         repairOrder = new RepairOrderDTO(0, customer, bikes.get(0), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, diagnosticReport);
         creator.getRepairOrderRegistry().addRepairOrder(repairOrder);
     }
-        
+
+    @After
+    public void tearDown()
+    {
+        creator = null;
+        controller = null;
+        bikes = null;
+        customer = null;
+        repairOrder = null;
+        diagnosticReport = null;
+
+    }
+
     @Test
-    public void testSearchCustomer() {
+    public void testSearchCustomer()
+    {
         CustomerDTO result = controller.searchCustomer("07676767");
-        Objects.equals(customer, result); 
+        Objects.equals(customer, result);
     }
 
     @Test
@@ -83,7 +96,6 @@ public class ControllerTest {
             assertEquals(State.NEWLY_CREATED, order.getState());
     }
 
-    // Jag får inte ihop denna, jag gav upp. Den luktar till och med illa :(
     @Test
     public void testAddRepairTask() {
         String repairTaskProbDesc = "Problem löst";
@@ -93,7 +105,9 @@ public class ControllerTest {
         controller.addRepairTask(repairTaskProbDesc, costToRepair);
         controller.saveActiveRepairOrder();
 
-        DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(1).getDiagnosticReport();
+        int newId = RepairOrderRegistry.getRepairOrderCount() - 1;
+
+        DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(newId).getDiagnosticReport();
 
         assertEquals(repairTaskProbDesc, result.getRepairTasks().get(0).getRepairTaskDescription());
         assertEquals(costToRepair, result.getRepairTasks().get(0).getCostToRepair());
