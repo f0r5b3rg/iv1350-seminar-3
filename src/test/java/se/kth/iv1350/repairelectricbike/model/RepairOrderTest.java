@@ -62,6 +62,8 @@ public class RepairOrderTest {
         assertEquals(repairOrder.getProblemDescription(), repairOrderDTO.getProblemDescription());
 
         assertEquals(repairOrder.getEstimatedCompletionDate(), repairOrderDTO.getEstimatedCompletionDate());
+
+        assertEquals(repairOrder.getState(), repairOrderDTO.getState());
     }
 
     @Test
@@ -74,10 +76,7 @@ public class RepairOrderTest {
         assertEquals(diagnosticReport.getRepairTasks(), diagnosticReportDTO.getRepairTasks());
 
         assertEquals(diagnosticReport.getTotalCost(), diagnosticReportDTO.getTotalCost());
-
     }
-
-
 
     @Test
     public void testAddRepairTask() {
