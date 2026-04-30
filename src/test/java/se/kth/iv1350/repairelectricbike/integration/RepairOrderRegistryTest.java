@@ -1,4 +1,4 @@
-package main.test.integration;
+package test.java.se.iv1350.repairelectricbike.integration;
 
 import static org.junit.Assert.assertEquals;
 
