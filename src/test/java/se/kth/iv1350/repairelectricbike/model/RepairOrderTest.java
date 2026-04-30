@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import se.kth.iv1350.repairelectricbike.integration.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,9 +50,34 @@ public class RepairOrderTest {
     }
 
     @Test
-    public void testConvertToDTO() {
+    public void tstCnvrtRprOrdrToRprOrdrDTO() {
+        RepairOrderDTO repairOrderDTO = repairOrder.convertToDTO();
+
+        assertEquals(repairOrder.getId(), repairOrderDTO.getId());
+
+        assertEquals(repairOrder.getCustomer().getCustomerDTO(), repairOrderDTO.getCustomer());
+
+        assertEquals(repairOrder.getBikeToRepair(), repairOrderDTO.getBikeToRepair());
+
+        assertEquals(repairOrder.getProblemDescription(), repairOrderDTO.getProblemDescription());
+
+        assertEquals(repairOrder.getEstimatedCompletionDate(), repairOrderDTO.getEstimatedCompletionDate());
+    }
+
+    @Test
+    public void tstCnvrtDiaRprtToDiaRprtDTO() {
+        DiagnosticReport diagnosticReport = repairOrder.getDiagnosticReport();
+        DiagnosticReportDTO diagnosticReportDTO = repairOrder.getDiagnosticReport().ConvertToDTO();
+
+        assertEquals(diagnosticReport.getDiagnosticResult(), diagnosticReportDTO.getDiagnosticResult());
+
+        assertEquals(diagnosticReport.getRepairTasks(), diagnosticReportDTO.getRepairTasks());
+
+        assertEquals(diagnosticReport.getTotalCost(), diagnosticReportDTO.getTotalCost());
 
     }
+
+
 
     @Test
     public void testAddRepairTask() {
