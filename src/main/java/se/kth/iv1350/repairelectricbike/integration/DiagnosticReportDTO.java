@@ -26,6 +26,12 @@ public class DiagnosticReportDTO {
         this.totalCost = totalCost;
     }
 
+    public boolean equals(DiagnosticReportDTO toCompare) {
+        return diagnosticResult.equals(toCompare.diagnosticResult) &&
+                repairTasks.equals(toCompare.repairTasks) &&
+                totalCost == toCompare.totalCost;
+    }
+
     /**
      * Get the diagnostic result.
      * 

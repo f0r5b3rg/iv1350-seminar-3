@@ -34,6 +34,13 @@ public class CustomerDTO {
                 "  Owned bikes: " + ownedBikes;
     }
 
+    public boolean equals(CustomerDTO toCompare) {
+        return name.equals(toCompare.name) &&
+                email.equals(toCompare.email) &&
+                phoneNumber.equals(toCompare.phoneNumber) &&
+                ownedBikes.equals(toCompare.ownedBikes);
+    }
+
     /**
      * Get the customer's name.
      *

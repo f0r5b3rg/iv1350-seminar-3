@@ -20,6 +20,11 @@ public class RepairTaskDTO {
         this.costToRepair = costToRepair;
     }
 
+    public boolean equals(RepairTaskDTO toCompare) {
+       return repairTaskDescription.equals(toCompare.repairTaskDescription) &&
+       costToRepair == toCompare.costToRepair;
+    }
+
     @Override
     public String toString() {
         return "repairTaskDescription: " + repairTaskDescription + ", " +

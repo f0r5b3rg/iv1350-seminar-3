@@ -25,7 +25,7 @@ public class DiagnosticReport {
         totalCost += repairTask.getCostToRepair();
     }
 
-    public DiagnosticReportDTO ConvertToDTO() {
+    DiagnosticReportDTO ConvertToDTO() {
         return new DiagnosticReportDTO(this.diagnosticResult, this.repairTasks, this.totalCost);
     }
 

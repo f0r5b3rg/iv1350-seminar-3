@@ -1,6 +1,5 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -12,7 +11,7 @@ public class RepairOrderDTO {
     private final CustomerDTO customer;
     private final BikeDTO bikeToRepair;
     private final String problemDescription;
-    private final LocalDate estimatedCompletonDate;
+    private final LocalDate estimatedCompletionDate;
     private final State state;
     private final DiagnosticReportDTO diagnosticReport;
 
@@ -37,7 +36,7 @@ public class RepairOrderDTO {
         this.customer = customer;
         this.bikeToRepair = bikeToRepair;
         this.problemDescription = problemDescription;
-        this.estimatedCompletonDate = estimatedCompletionDate;
+        this.estimatedCompletionDate = estimatedCompletionDate;
         this.state = state;
         this.diagnosticReport = diagnosticReport;
     }
@@ -49,8 +48,18 @@ public class RepairOrderDTO {
                 "  Diagnosis result: " + diagnosticReport.getDiagnosticResult() + "\n" +
                 "  Repair tasks: " + diagnosticReport.getRepairTasks() + "\n" +
                 "  State: " + state + "\n" +
-                "  Estimated completion date: " + estimatedCompletonDate + "\n" +
+                "  Estimated completion date: " + estimatedCompletionDate + "\n" +
                 "  Total cost: " + diagnosticReport.getTotalCost();
+    }
+
+    boolean equals(RepairOrderDTO toCompare) {
+        return id == toCompare.id &&
+                customer.equals(toCompare.customer) &&
+                bikeToRepair.equals(toCompare.bikeToRepair) &&
+                problemDescription.equals(toCompare.problemDescription) &&
+                estimatedCompletionDate.equals(toCompare.estimatedCompletionDate) &&
+                state == toCompare.state &&
+                diagnosticReport.equals(toCompare.diagnosticReport);
     }
 
     /**
@@ -86,7 +95,7 @@ public class RepairOrderDTO {
      * @return the value of date as a LocalDate object.
      */
     public LocalDate getDate() {
-        return estimatedCompletonDate;
+        return estimatedCompletionDate;
     }
 
     /**
@@ -104,7 +113,7 @@ public class RepairOrderDTO {
      * @return the value of the estimated completion date.
      */
     public LocalDate getEstimatedCompletionDate() {
-        return estimatedCompletonDate;
+        return estimatedCompletionDate;
     }
 
     /**
@@ -121,7 +130,7 @@ public class RepairOrderDTO {
      * 
      * @return the value of diagnostic report.
      */
-    public DiagnosticReportDTO getDiagnoticReport() {
+    public DiagnosticReportDTO getDiagnosticReport() {
         return diagnosticReport;
     }
 

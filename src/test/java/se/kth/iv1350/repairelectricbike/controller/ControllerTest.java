@@ -10,7 +10,6 @@ import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 
-import se.kth.iv1350.repairelectricbike.controller.*;
 import se.kth.iv1350.repairelectricbike.integration.*;
 
 public class ControllerTest {
@@ -94,7 +93,7 @@ public class ControllerTest {
         controller.addRepairTask(repairTaskProbDesc, costToRepair);
         controller.saveActiveRepairOrder();
 
-        DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(1).getDiagnoticReport();
+        DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(1).getDiagnosticReport();
 
         assertEquals(repairTaskProbDesc, result.getRepairTasks().get(0).getRepairTaskDescription());
         assertEquals(costToRepair, result.getRepairTasks().get(0).getCostToRepair());
@@ -110,10 +109,10 @@ public class ControllerTest {
     }
 
     @Test
-    public void testUpdateDiagnosticReport() {
-        creator.getRepairOrderRegistry().updateDiagnosticReport(0, "Lol");
+    public void testUpdateDiagnosticResult() {
+        creator.getRepairOrderRegistry().updateDiagnosticResult(0, "Lol");
 
-        assertEquals("Lol", creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getDiagnoticReport().getDiagnosticResult());
+        assertEquals("Lol", creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult());
     }
 
 

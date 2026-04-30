@@ -100,8 +100,8 @@ public class Controller {
      * @param repairOrderID    The id of the repair order.
      * @param diagnosticResult The updated description of the diagnostic report
      */
-    public void updateDiagnosticReport(int repairOrderID, String diagnosticResult) {
-        repairOrderRegistry.updateDiagnosticReport(repairOrderID, diagnosticResult);
+    public void updateDiagnosticResult(int repairOrderID, String diagnosticResult) {
+        repairOrderRegistry.updateDiagnosticResult(repairOrderID, diagnosticResult);
     }
 
     /**

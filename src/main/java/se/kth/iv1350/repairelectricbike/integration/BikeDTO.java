@@ -25,6 +25,11 @@ public final class BikeDTO {
         this.serialNo = serialNo;
     }
 
+    public boolean equals (BikeDTO toCompare) {
+        return brand.equals(toCompare.brand) &&
+                model.equals(toCompare.model) &&
+                serialNo.equals(toCompare.serialNo);
+    }
     @Override
     public String toString() {
         return "brand: " + brand + ", " +

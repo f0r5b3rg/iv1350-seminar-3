@@ -5,8 +5,6 @@ package se.kth.iv1350.repairelectricbike.integration;
  * Currently simulates database retrieval by storing repair orders instead.
  */
 
-import se.kth.iv1350.repairelectricbike.model.RepairOrder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
@@ -23,7 +21,7 @@ public class RepairOrderRegistry {
         repairOrders.add(new RepairOrderData(repairOrderDTO.getId(), repairOrderDTO.getCustomer(),
                 repairOrderDTO.getBikeToRepair(),
                 repairOrderDTO.getProblemDescription(), repairOrderDTO.getDate(), repairOrderDTO.getState(),
-                repairOrderDTO.getDiagnoticReport()));
+                repairOrderDTO.getDiagnosticReport()));
         repairOrderCount += 1;
     }
 
@@ -68,7 +66,7 @@ public class RepairOrderRegistry {
             repairOrder.state = newState;
     }
 
-    public void updateDiagnosticReport(int repairOrderID, String diagnosticResult) {
+    public void updateDiagnosticResult(int repairOrderID, String diagnosticResult) {
         RepairOrderData repairOrder = repairOrders.get(repairOrderID);
 
         if (repairOrder != null)
