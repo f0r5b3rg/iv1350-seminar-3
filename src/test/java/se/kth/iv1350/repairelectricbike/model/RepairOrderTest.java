@@ -2,6 +2,7 @@ package se.kth.iv1350.repairelectricbike.model;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,6 +35,17 @@ public class RepairOrderTest {
 
         customerRegistry.addCustomer(customerDTO);
         repairOrderRegistry.addRepairOrder(repairOrder.convertToDTO());
+    }
+
+    @After
+    public void tearDown()
+    {
+        creator = null;
+        customerDTO = null;
+        customer = null;
+        repairOrder = null;
+        bikes = null;
+        repairOrderRegistry = null;
     }
 
     @Test
