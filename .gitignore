@@ -3,6 +3,9 @@
 *.iml
 *.project/
 
+# vs code
+.vscode
+
 # Compiled class file
 *.class
 

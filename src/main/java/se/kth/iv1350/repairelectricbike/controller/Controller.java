@@ -1,17 +1,14 @@
 package se.kth.iv1350.repairelectricbike.controller;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
 import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
-import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
 import se.kth.iv1350.repairelectricbike.integration.Printer;
 import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
 import se.kth.iv1350.repairelectricbike.integration.State;
-import se.kth.iv1350.repairelectricbike.model.DiagnosticReport;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
 
 /**
