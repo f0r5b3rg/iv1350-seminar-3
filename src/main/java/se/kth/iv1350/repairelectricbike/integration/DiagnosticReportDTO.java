@@ -22,7 +22,7 @@ public class DiagnosticReportDTO {
      */
     public DiagnosticReportDTO(String diagnosticResult, List<RepairTaskDTO> repairTasks, int totalCost) {
         this.diagnosticResult = diagnosticResult;
-        this.repairTasks = new ArrayList<RepairTaskDTO>();
+        this.repairTasks = (repairTasks != null) ? new ArrayList<>(repairTasks): new ArrayList<>();
         this.totalCost = totalCost;
     }
 
