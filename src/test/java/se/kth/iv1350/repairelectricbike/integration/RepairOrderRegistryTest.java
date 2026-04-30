@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +33,6 @@ public class RepairOrderRegistryTest {
         customerRegistry.addCustomer(customer);
         repairOrderRegistry.addRepairOrder(repairOrder);
     }
-
     
     @Test
     public void testAddRepairOrder() {

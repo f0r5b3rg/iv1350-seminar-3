@@ -95,7 +95,7 @@ public class RepairOrderRegistry {
         private State state;
         private DiagnosticReportDTO diagnosticReport;
 
-        public RepairOrderData(int id, CustomerDTO customer, BikeDTO bikeToRepair,
+        private RepairOrderData(int id, CustomerDTO customer, BikeDTO bikeToRepair,
                 String problemDescription, LocalDate estimatedCompletionDate,
                 State state, DiagnosticReportDTO diagnosticReport) {
             this.id = id;
