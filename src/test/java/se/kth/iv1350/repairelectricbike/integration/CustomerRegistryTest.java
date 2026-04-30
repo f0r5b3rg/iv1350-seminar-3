@@ -1,4 +1,4 @@
-package test.java.se.kth.iv1350.repairelectricbike.integration;
+package se.kth.iv1350.repairelectricbike.integration;
 
 import java.util.ArrayList;
 import java.util.List;

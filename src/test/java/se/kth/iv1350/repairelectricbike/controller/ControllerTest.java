@@ -1,4 +1,4 @@
-package test.java.se.kth.iv1350.repairelectricbike.controller;
+package se.kth.iv1350.repairelectricbike.controller;
 
 import static org.junit.Assert.assertEquals;
 

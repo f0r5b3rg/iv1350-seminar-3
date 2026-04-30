@@ -1,4 +1,4 @@
-package test.java.se.kth.iv1350.repairelectricbike.model;
+package se.kth.iv1350.repairelectricbike.model;
 
 import org.junit.Test;
 
