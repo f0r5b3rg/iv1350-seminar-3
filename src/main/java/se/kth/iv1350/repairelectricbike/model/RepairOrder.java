@@ -31,8 +31,7 @@ public class RepairOrder {
         return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, this.diagnosticReport.ConvertToDTO());
     }
 
-    public void addRepairTask(String repairTaskDescription, int costToRepair)
-    {
+    public void addRepairTask(String repairTaskDescription, int costToRepair) {
         RepairTaskDTO taskToAdd = new RepairTaskDTO(repairTaskDescription, costToRepair);
         diagnosticReport.addRepairTask(taskToAdd);
     }

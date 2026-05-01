@@ -10,6 +10,9 @@ import java.util.List;
 public class CustomerRegistry {
   private List<CustomerData> customers;
 
+  /**
+   * Creates a list of customers to represent the customer registry. 
+   */
   public CustomerRegistry() {
     this.customers = new ArrayList<>();
   }

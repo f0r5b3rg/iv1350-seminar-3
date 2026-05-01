@@ -31,6 +31,20 @@ public class DiagnosticReportDTO {
                 totalCost == toCompare.totalCost;
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+            """
+                Diagnostic Result: %s
+                Repair Tasks: %s
+                Total cost: %d
+            """,
+            diagnosticResult,
+            repairTasks,
+            totalCost
+        );
+    }
+
     /**
      * Get the diagnostic result.
      * 

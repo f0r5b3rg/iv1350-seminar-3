@@ -34,13 +34,14 @@ public class Controller {
      * Searches for an existing customer in the customerRegistry.
      *
      * @param phoneNumber The phone number of the sought customer.
+     * @return the customer's information.
      */
     public CustomerDTO searchCustomer(String phoneNumber) {
         return customerRegistry.searchCustomer(phoneNumber);
     }
 
     /**
-     * Returns an int value which represents the customers repair order id.
+     * Creates a new repair order for a customer and sets it as the currently active repair order.
      *
      * @param phoneNumber  The phone number of the customer.
      * @param bikeSerialNo The serial number of the customers bike.
@@ -52,7 +53,7 @@ public class Controller {
     }
 
     /**
-     * Saves the active repair order in repair order registry. 
+     * Saves the active repair order in rthe epair order registry. 
      */
     public void saveActiveRepairOrder() {
         RepairOrderDTO toSave = activeRepairOrder.convertToDTO();
@@ -60,7 +61,7 @@ public class Controller {
     }
 
     /**
-     * Saves customer in customer registry.
+     * Saves a customer in the customer registry.
      * 
      * @param customer the customer to save.  
      */
@@ -69,9 +70,10 @@ public class Controller {
     }
 
     /**
-     * Returns a List of each repair order that is in the sought state.
+     * Retrieves all repair orders that match the specifed state. 
      *
      * @param state The state of the repair orders.
+     * @return a list of each repair order that is in the sought state.
      */
     public List<RepairOrderDTO> findRepairOrders(State state) {
         return repairOrderRegistry.findRepairOrders(state);
@@ -80,8 +82,8 @@ public class Controller {
     /**
      * Adds a new repair task to the repair order and updates its total cost.
      *
-     * @param repairTaskDescription Description of the new repairTask
-     * @param costToRepair          The cost of the new repairTask
+     * @param repairTaskDescription Description of the new repairTask.
+     * @param costToRepair          The cost of the new repairTask.
      */
     public void addRepairTask(String repairTaskDescription, int costToRepair) {
         activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
@@ -110,7 +112,7 @@ public class Controller {
     /**
      * Finds the repair order and prints it.
      *
-     * @param repairOrderID The id of the repair order.
+     * @param repairOrderID The id of the repair order to print.
      */
     public void printRepairOrder(int repairOrderID) {
         RepairOrderDTO repairOrderToPrint = repairOrderRegistry.getRepairOrderDTObyID(repairOrderID);

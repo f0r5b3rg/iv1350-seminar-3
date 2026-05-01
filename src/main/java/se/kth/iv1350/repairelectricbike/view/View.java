@@ -98,7 +98,8 @@ public class View {
 
         // Receptionist informs customer about diagnostic report, proposed repair tasks, cost
         // for each proposed repair task, and total cost.
-        System.out.println("The repair order after the diagnostic:");
-        System.out.println();
+        repairOrders = controller.findRepairOrders(State.READY_FOR_APPROVAL);
+        System.out.println("The diagnostic result:");
+        System.out.println(repairOrders.getFirst().getDiagnosticReport());
     }
 }

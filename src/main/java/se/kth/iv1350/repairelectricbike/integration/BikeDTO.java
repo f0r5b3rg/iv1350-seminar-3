@@ -9,17 +9,23 @@ public final class BikeDTO {
     private final String serialNo;
 
     /**
-     * Creates a new instance of a customer.
+     * Creates a new instance representing a bike.
      *
      * @param brand    The bike's brand.
      * @param model    The bike's model.
      * @param serialNo The bike's serial number.
      */
-
     public BikeDTO(String brand, String model, String serialNo) {
         this.brand = brand;
         this.model = model;
         this.serialNo = serialNo;
+    }
+
+    @Override
+    public String toString() {
+        return "brand: " + brand + ", " +
+                "model: " + model + ", " +
+                "serialNo: " + serialNo;
     }
 
     public boolean equals (BikeDTO toCompare) {
@@ -27,12 +33,7 @@ public final class BikeDTO {
                 model.equals(toCompare.model) &&
                 serialNo.equals(toCompare.serialNo);
     }
-    @Override
-    public String toString() {
-        return "brand: " + brand + ", " +
-                "model: " + model + ", " +
-                "serialNo: " + serialNo;
-    }
+    
 
     /**
      * Get the bike's brand.

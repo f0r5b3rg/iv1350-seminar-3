@@ -14,21 +14,20 @@ public class RepairTaskDTO {
      * @param repairTaskDescription The description of a repair task.
      * @param costToRepair          The cost for a repair task.
      */
-
     public RepairTaskDTO(String repairTaskDescription, int costToRepair) {
         this.repairTaskDescription = repairTaskDescription;
         this.costToRepair = costToRepair;
-    }
-
-    public boolean equals(RepairTaskDTO toCompare) {
-       return repairTaskDescription.equals(toCompare.repairTaskDescription) &&
-       costToRepair == toCompare.costToRepair;
     }
 
     @Override
     public String toString() {
         return "repairTaskDescription: " + repairTaskDescription + ", " +
                 "costToRepair: " + costToRepair;
+    }
+
+    public boolean equals(RepairTaskDTO toCompare) {
+       return repairTaskDescription.equals(toCompare.repairTaskDescription) &&
+       costToRepair == toCompare.costToRepair;
     }
 
     /**

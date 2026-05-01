@@ -13,10 +13,18 @@ public class RepairOrderRegistry {
     private static int repairOrderCount;
     private List<RepairOrderData> repairOrders;
 
+    /**
+     * Creates a new instance representing the repair order registry
+     */
     RepairOrderRegistry() {
         this.repairOrders = new ArrayList<>();
     }
 
+    /**
+     * Adds a new repair order to the register.
+     * 
+     * @param repairOrderDTO    The repair order to be added. 
+     */
     public void addRepairOrder(RepairOrderDTO repairOrderDTO) {
         repairOrders.add(new RepairOrderData(repairOrderDTO.getId(), repairOrderDTO.getCustomer(),
                 repairOrderDTO.getBikeToRepair(),
@@ -25,16 +33,30 @@ public class RepairOrderRegistry {
         repairOrderCount += 1;
     }
 
-    public static int getRepairOrderCount()
-    {
+    /**
+     * Get the value of repair orders in the registry
+     * 
+     * @return the value of the amount of repair orders
+     */
+    public static int getRepairOrderCount() {
         return repairOrderCount;
     }
 
-    public static void setRepairOrderCount(int newCount)
-    {
+    /**
+     * ???
+     * 
+     * @param newCount
+     */
+    public static void setRepairOrderCount(int newCount) {
         repairOrderCount = newCount;
     }
 
+    /**
+     * Get a list of repair orders with a certain state. 
+     * 
+     * @param state the state of the repair orders to retrieve. 
+     * @return a list of repair orders. 
+     */
     public List<RepairOrderDTO> findRepairOrders(State state) {
         List<RepairOrderDTO> result = new ArrayList<>();
         for (RepairOrderData repairOrder : repairOrders) {
@@ -47,14 +69,19 @@ public class RepairOrderRegistry {
         return result;
     }
 
+    /**
+     * Updates the estimated completion date of a reparation
+     * 
+     * @param repairOrderID     The id of the repair order 
+     * @param estimatedDate     The estimated completion date 
+     */
     public void updateCompletionDate(int repairOrderID, LocalDate estimatedDate) {
         RepairOrderData repairOrder = repairOrders.get(repairOrderID);
         if (repairOrder != null)
             repairOrder.estimatedCompletionDate = estimatedDate;
     }
 
-    public RepairOrderDTO getRepairOrderDTObyID(int repairOrderID)
-    {
+    public RepairOrderDTO getRepairOrderDTObyID(int repairOrderID) {
         for (RepairOrderData repairOrder : repairOrders)
         {
             if (repairOrder.id == repairOrderID)
@@ -65,12 +92,24 @@ public class RepairOrderRegistry {
         return null;
     }
 
+    /**
+     * Updates the state of a repair order. 
+     * 
+     * @param repairOrderID     The id of the repair order.
+     * @param newState          The new state of the repair order.
+     */
     public void updateState(int repairOrderID, State newState) {
         RepairOrderData repairOrder = repairOrders.get(repairOrderID);
         if (repairOrder != null)
             repairOrder.state = newState;
     }
 
+    /**
+     * Update the value of diagnostic result 
+     * 
+     * @param repairOrderID     The 
+     * @param diagnosticResult
+     */
     public void updateDiagnosticResult(int repairOrderID, String diagnosticResult) {
         RepairOrderData repairOrder = repairOrders.get(repairOrderID);
 
@@ -80,15 +119,6 @@ public class RepairOrderRegistry {
             int totalCost = repairOrder.diagnosticReport.getTotalCost();
             repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticResult, repairTasks, totalCost);
         }
-    }
-
-    private RepairOrderData getRepairOrderById(int repairOrderID)
-    {
-        for (RepairOrderData repairOrder : repairOrders)
-        {
-            return repairOrder;
-        }
-        return null;
     }
 
     private class RepairOrderData {
