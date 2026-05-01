@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Contains diagnostic report information concerning a repair order
- *
+ * Contains diagnostic report information concerning a repair order.
  */
 public class DiagnosticReport {
     private String diagnosticResult;

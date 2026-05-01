@@ -17,6 +17,11 @@ public class CustomerRegistry {
     this.customers = new ArrayList<>();
   }
 
+  /**
+   * Adds a customer to the customer registry.
+   * 
+   * @param customer the customer to be added. 
+   */
   public void addCustomer(CustomerDTO customer) {
     this.customers.add(new CustomerData(
             customer.getName(),

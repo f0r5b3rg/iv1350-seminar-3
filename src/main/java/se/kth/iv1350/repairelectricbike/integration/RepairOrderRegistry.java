@@ -1,20 +1,19 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-/*
-  Contains all calls to the data store with all repair orders.
-  Currently simulates database retrieval by storing repair orders instead.
- */
-
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
+/*
+  Contains all calls to the data store with all repair orders.
+  Currently simulates database retrieval by storing repair orders instead.
+ */
 public class RepairOrderRegistry {
     private static int repairOrderCount;
     private List<RepairOrderData> repairOrders;
 
     /**
-     * Creates a new instance representing the repair order registry
+     * Creates a new instance representing the repair order registry.
      */
     RepairOrderRegistry() {
         this.repairOrders = new ArrayList<>();
@@ -34,28 +33,29 @@ public class RepairOrderRegistry {
     }
 
     /**
-     * Get the value of repair orders in the registry
+     * Get the value of the amount of repair orders in the registry.
      * 
-     * @return the value of the amount of repair orders
+     * @return  The value of the amount of repair orders.
      */
     public static int getRepairOrderCount() {
         return repairOrderCount;
     }
 
     /**
-     * ???
+     * This is used for the JUnit test to reset counter for the 
+     * amount of repair orders. 
      * 
-     * @param newCount
+     * @param newCount  The new counter. 
      */
-    public static void setRepairOrderCount(int newCount) {
+    public void setRepairOrderCount(int newCount) {
         repairOrderCount = newCount;
     }
 
     /**
      * Get a list of repair orders with a certain state. 
      * 
-     * @param state the state of the repair orders to retrieve. 
-     * @return a list of repair orders. 
+     * @param state     The state of the repair orders to retrieve. 
+     * @return          A list of repair orders. 
      */
     public List<RepairOrderDTO> findRepairOrders(State state) {
         List<RepairOrderDTO> result = new ArrayList<>();
@@ -105,10 +105,10 @@ public class RepairOrderRegistry {
     }
 
     /**
-     * Update the value of diagnostic result 
+     * Update the value of diagnostic result.
      * 
-     * @param repairOrderID     The 
-     * @param diagnosticResult
+     * @param repairOrderID     The id of the repair order.
+     * @param diagnosticResult  The diagnostiv result to be added.
      */
     public void updateDiagnosticResult(int repairOrderID, String diagnosticResult) {
         RepairOrderData repairOrder = repairOrders.get(repairOrderID);

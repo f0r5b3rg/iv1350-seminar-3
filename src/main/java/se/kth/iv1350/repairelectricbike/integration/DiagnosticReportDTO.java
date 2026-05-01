@@ -1,12 +1,11 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-/**
- * Contains information about a diagnostic report.
- */
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains information about a diagnostic report.
+ */
 public class DiagnosticReportDTO {
     private final String diagnosticResult;
     private final List<RepairTaskDTO> repairTasks;
@@ -46,7 +45,7 @@ public class DiagnosticReportDTO {
     }
 
     /**
-     * Get the diagnostic result.
+     * Get the value of diagnostic result.
      * 
      * @return the diagnostic result.
      */
@@ -64,9 +63,9 @@ public class DiagnosticReportDTO {
     }
 
     /**
-     * Get the total cost of all the repair tasks.
+     * Get the value of the total cost of all repair tasks.
      * 
-     * @return the total cost.
+     * @return the total cost of all repair tasks.
      */
     public int getTotalCost() {
         return this.totalCost;

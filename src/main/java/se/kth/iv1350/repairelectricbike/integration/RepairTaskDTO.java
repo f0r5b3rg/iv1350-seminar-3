@@ -3,7 +3,6 @@ package se.kth.iv1350.repairelectricbike.integration;
 /**
  * Contains information about a repair task.
  */
-
 public class RepairTaskDTO {
     private final String repairTaskDescription;
     private final int costToRepair;
@@ -33,7 +32,7 @@ public class RepairTaskDTO {
     /**
      * Get the value of repair task description
      * 
-     * @return the value of repair task description
+     * @return  the value of repair task description
      */
     public String getRepairTaskDescription() {
         return repairTaskDescription;
@@ -42,7 +41,7 @@ public class RepairTaskDTO {
     /**
      * Get the value of cost to repair.
      * 
-     * @return the value of cost to repair.
+     * @return  the value of cost to repair.
      */
     public int getCostToRepair() {
         return costToRepair;

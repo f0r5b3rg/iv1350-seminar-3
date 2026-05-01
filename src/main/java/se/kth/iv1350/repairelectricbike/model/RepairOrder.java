@@ -17,6 +17,13 @@ public class RepairOrder {
     private State state;
     private DiagnosticReport diagnosticReport;
 
+    /**
+     * Creates a new instance of a repair order.
+     * 
+     * @param customerDTO           The customer's information. 
+     * @param bikeSerialNo          The bike's serial number.
+     * @param problemDescription    The customer's problem description of the bike. 
+     */
     public RepairOrder(CustomerDTO customerDTO, String bikeSerialNo, String problemDescription) {
         this.id = RepairOrderRegistry.getRepairOrderCount();
         this.customer = new Customer(customerDTO);
@@ -27,6 +34,11 @@ public class RepairOrder {
         this.diagnosticReport = new DiagnosticReport();
     }
 
+    /**
+     * Converts a customer instance to a DTO. 
+     * 
+     * @return  the customer DTO.
+     */
     public RepairOrderDTO convertToDTO() {
         return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, this.diagnosticReport.ConvertToDTO());
     }

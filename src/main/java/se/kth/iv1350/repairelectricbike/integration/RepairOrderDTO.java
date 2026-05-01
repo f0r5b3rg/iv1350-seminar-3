@@ -28,7 +28,6 @@ public class RepairOrderDTO {
      * @param state                   The current state of repair order.
      * @param diagnosticReport        The data for the report's diagnostic report.
      */
-
     public RepairOrderDTO(int id, CustomerDTO customer, BikeDTO bikeToRepair,
             String problemDescription, LocalDate estimatedCompletionDate,
             State state, DiagnosticReportDTO diagnosticReport) {

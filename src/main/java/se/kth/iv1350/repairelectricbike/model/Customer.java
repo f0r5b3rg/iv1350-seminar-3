@@ -7,11 +7,15 @@ import java.util.List;
 
 /**
  * Contains all data and methods for one customer.
- *
  */
 public class Customer {
     private CustomerDTO customerDTO;
 
+    /**
+     * Creates a new instance of a customer.
+     * 
+     * @param customerDTO   The customer's information. 
+     */
     public Customer(CustomerDTO customerDTO) {
         this.customerDTO = customerDTO;
     }
@@ -25,6 +29,11 @@ public class Customer {
         return null;
     }
 
+    /**
+     * Get the customer's informaiton
+     * 
+     * @return  the value of a CustomerDTO. 
+     */
     public CustomerDTO getCustomerDTO() {
         return customerDTO;
     }
