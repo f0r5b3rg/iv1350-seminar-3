@@ -43,13 +43,26 @@ public class RepairOrderDTO {
 
     @Override
     public String toString() {
-        return "  Bike To Repair: " + bikeToRepair + "\n" +
-                "  Problem description: " + problemDescription + "\n" +
-                "  Diagnosis result: " + diagnosticReport.getDiagnosticResult() + "\n" +
-                "  Repair tasks: " + diagnosticReport.getRepairTasks() + "\n" +
-                "  State: " + state + "\n" +
-                "  Estimated completion date: " + estimatedCompletionDate + "\n" +
-                "  Total cost: " + diagnosticReport.getTotalCost();
+        return String.format(
+            """
+                id: %d
+                Bike to  repair: %s
+                Problem description: %s
+                Diagnostic result: %s
+                Repair tasks: %s
+                State: %s
+                Estimated completion date: %s
+                Total cost: %s             
+            """,
+            id,
+            bikeToRepair,
+            problemDescription,
+            diagnosticReport.getDiagnosticResult(),
+            diagnosticReport.getRepairTasks(),
+            state,
+            estimatedCompletionDate,
+            diagnosticReport.getTotalCost()
+        );
     }
 
     boolean equals(RepairOrderDTO toCompare) {

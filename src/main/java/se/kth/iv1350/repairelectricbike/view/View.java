@@ -1,5 +1,6 @@
 package se.kth.iv1350.repairelectricbike.view;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import se.kth.iv1350.repairelectricbike.controller.Controller;
@@ -67,13 +68,37 @@ public class View {
 
         // At this point the customer registry and repair order registry contains 5 test objects.
 
-        // Finds all newly created repair orders and add to list.
-        List<RepairOrderDTO> foundRepairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
-        //Test av printer, uppfyller typ vad som behövs utöver att fel data visas eller att data inte visas
-        System.out.println("Test \n");
+        // Receptionist enters customer’s phone number and 
+        // system searches customer registry for customer details (name and email address),
+        // and for details about the customer’s bike (brand, model and serial number).
+        CustomerDTO foundCustomer = controller.searchCustomer("0707777777");
+        System.out.println("Result of searching for existing customer:\n" + foundCustomer + "\n");
 
-        Printer printer = new Printer();
+        // Receptionist enters customer’s description and 
+        // system creates a repair order containing customer details, bike details, problemdescription and date.
+        String customerProblemDescription = "The bike has one wheel";
+        controller.createRepairOrder("0707777777", "123bike123", customerProblemDescription);
+        controller.saveActiveRepairOrder();
 
-        printer.printRepairOrder(foundRepairOrders.getLast());
+        // Technician asks system for repair order and system presents repair order.
+        List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
+        System.out.println("Result of searching for newly created repair orders:");
+        for(RepairOrderDTO order : repairOrders) {
+            System.out.println(order);
+        }
+
+        // Technician performs diagnostic and enters diagnostic report and proposed repair tasks.
+        // System updates repair order, by adding diagnostic report and proposed repair tasks.
+        controller.addRepairTask("The bike misses a wheel", 999);
+        controller.addRepairTask("The chain is rusty", 67);
+        String diagnosticResult  = "The bike is definitly broken";
+        controller.updateDiagnosticResult(5, diagnosticResult);
+        controller.updateState(5, State.READY_FOR_APPROVAL);
+        controller.updateCompletionDate(5, LocalDate.of(2026, 06, 7));
+
+        // Receptionist informs customer about diagnostic report, proposed repair tasks, cost
+        // for each proposed repair task, and total cost.
+        System.out.println("The repair order after the diagnostic:");
+        System.out.println();
     }
 }

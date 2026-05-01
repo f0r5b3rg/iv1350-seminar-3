@@ -51,11 +51,19 @@ public class Controller {
         activeRepairOrder = new RepairOrder(customer, bikeSerialNo, problemDesc);
     }
 
+    /**
+     * Saves the active repair order in repair order registry. 
+     */
     public void saveActiveRepairOrder() {
         RepairOrderDTO toSave = activeRepairOrder.convertToDTO();
         repairOrderRegistry.addRepairOrder(toSave);
     }
 
+    /**
+     * Saves customer in customer registry.
+     * 
+     * @param customer the customer to save.  
+     */
     public void saveCustomer(CustomerDTO customer) {
         customerRegistry.addCustomer(customer);
     }

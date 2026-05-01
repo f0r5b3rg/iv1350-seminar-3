@@ -1,7 +1,7 @@
 package se.kth.iv1350.repairelectricbike.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import se.kth.iv1350.repairelectricbike.integration.*;
 public class ControllerTest {
 
     private RegistryCreator creator;
+    private RepairOrderRegistry repairOrderRegistry;
     private Controller controller;
     private List<BikeDTO> bikes;
     private CustomerDTO customer;
@@ -29,6 +30,7 @@ public class ControllerTest {
     public void setUp() {
         creator = new RegistryCreator();
         controller = new Controller(creator, new Printer());
+        repairOrderRegistry = creator.getRepairOrderRegistry();
         
         BikeDTO testBike1 = new BikeDTO("SixSeven", "GenAlpha", "67WC69");
         BikeDTO testBike2 = new BikeDTO("SixNine", "GenBeta", "0");
@@ -38,7 +40,7 @@ public class ControllerTest {
 
         diagnosticReport = new DiagnosticReportDTO(null, null, 0);
         repairOrder = new RepairOrderDTO(0, customer, bikes.getFirst(), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, diagnosticReport);
-        creator.getRepairOrderRegistry().addRepairOrder(repairOrder);
+        repairOrderRegistry.addRepairOrder(repairOrder);
     }
 
     @After
@@ -54,8 +56,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testSearchCustomer()
-    {
+    public void testSearchCustomer() {
         CustomerDTO result = controller.searchCustomer("07676767");
         assertTrue(customer.equals(result));
     }
@@ -68,7 +69,7 @@ public class ControllerTest {
 
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
         RepairOrderDTO result = repairOrders.getLast();
-
+        
         assertEquals(customer.getPhoneNumber(), result.getCustomer().getPhoneNumber());
         assertEquals(problemDesc, result.getProblemDescription());
         assertEquals(bikes.get(1).getSerialNo(), result.getBikeToRepair().getSerialNo());
@@ -107,7 +108,7 @@ public class ControllerTest {
 
         int newId = RepairOrderRegistry.getRepairOrderCount() - 1;
 
-        DiagnosticReportDTO result = creator.getRepairOrderRegistry().getRepairOrderDTObyID(newId).getDiagnosticReport();
+        DiagnosticReportDTO result = repairOrderRegistry.getRepairOrderDTObyID(newId).getDiagnosticReport();
 
         assertEquals(repairTaskProbDesc, result.getRepairTasks().getFirst().getRepairTaskDescription());
         assertEquals(costToRepair, result.getRepairTasks().getFirst().getCostToRepair());
@@ -119,14 +120,14 @@ public class ControllerTest {
 
         controller.updateState(0, newState);
 
-        assertEquals(State.ACCEPTED, creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getState());
+        assertEquals(State.ACCEPTED, repairOrderRegistry.getRepairOrderDTObyID(0).getState());
     }
 
     @Test
     public void testUpdateDiagnosticResult() {
-        creator.getRepairOrderRegistry().updateDiagnosticResult(0, "Lol");
+        repairOrderRegistry.updateDiagnosticResult(0, "Lol");
 
-        assertEquals("Lol", creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult());
+        assertEquals("Lol", repairOrderRegistry.getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult());
     }
 
 
@@ -135,6 +136,6 @@ public class ControllerTest {
         LocalDate newDate = LocalDate.of(2026, 04, 29);
         controller.updateCompletionDate(0, newDate);
 
-        assertEquals(newDate, creator.getRepairOrderRegistry().getRepairOrderDTObyID(0).getDate());
+        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(0).getDate());
     }
 }
