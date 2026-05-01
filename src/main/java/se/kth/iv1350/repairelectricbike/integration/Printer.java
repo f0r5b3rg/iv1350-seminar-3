@@ -18,7 +18,7 @@ public class Printer {
 
     private String createPrintableRepairOrder(RepairOrderDTO repairOrderToPrint) {
         StringBuilder builder = new StringBuilder();
-        appendLine(builder, "Repair order");
+        appendLine(builder, "-----Repair order-----");
         endSection(builder);
 
         appendLine(builder, "Customer information: ");

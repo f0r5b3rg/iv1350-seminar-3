@@ -68,11 +68,14 @@ public class View {
 
         // At this point the customer registry and repair order registry contains 5 test objects.
 
+
+        //---------- BASIC FLOW STARTS HERE ----------
+
         // Receptionist enters customer’s phone number and 
         // system searches customer registry for customer details (name and email address),
         // and for details about the customer’s bike (brand, model and serial number).
         CustomerDTO foundCustomer = controller.searchCustomer("0707777777");
-        System.out.println("Result of searching for existing customer:\n" + foundCustomer + "\n");
+        System.out.println("\nResult of searching for existing customer:\n" + foundCustomer + "\n");
 
         // Receptionist enters customer’s description and 
         // system creates a repair order containing customer details, bike details, problemdescription and date.
@@ -89,7 +92,7 @@ public class View {
 
         // Technician performs diagnostic and enters diagnostic report and proposed repair tasks.
         // System updates repair order, by adding diagnostic report and proposed repair tasks.
-        controller.addRepairTask("The bike misses a wheel", 999);
+        controller.addRepairTask("The bike misses a wheel", 999); //Denna del är det som inte fungerar, repairtasks uppdateras inte i registret
         controller.addRepairTask("The chain is rusty", 67);
         String diagnosticResult  = "The bike is definitly broken";
         controller.updateDiagnosticResult(5, diagnosticResult);
@@ -98,8 +101,18 @@ public class View {
 
         // Receptionist informs customer about diagnostic report, proposed repair tasks, cost
         // for each proposed repair task, and total cost.
-        repairOrders = controller.findRepairOrders(State.READY_FOR_APPROVAL);
-        System.out.println("The diagnostic result:");
-        System.out.println(repairOrders.getFirst().getDiagnosticReport());
+        List<RepairOrderDTO> updatedRepairOrders = controller.findRepairOrders(State.READY_FOR_APPROVAL);
+        System.out.println("The presented diagnostic report and repair tasks:");
+        System.out.println(updatedRepairOrders.getFirst().getDiagnosticReport()); 
+
+        // Customer accepts proposed repair tasks and cost.
+        // Receptionist registers that customer accepted repair order.
+        controller.updateState(5, State.ACCEPTED);
+
+        // System prints repair order. The printout contains all repair order data, including
+        // estimation of when reparation will be completed.
+       List<RepairOrderDTO> foundRepairOrders = controller.findRepairOrders(State.ACCEPTED);
+       Printer printer = new Printer();
+       printer.printRepairOrder(foundRepairOrders.getFirst());
     }
 }

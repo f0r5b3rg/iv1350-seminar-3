@@ -73,7 +73,7 @@ public class Controller {
      * Retrieves all repair orders that match the specifed state. 
      *
      * @param state The state of the repair orders.
-     * @return a list of each repair order that is in the sought state.
+     * @return      A list of each repair order that is in the sought state.
      */
     public List<RepairOrderDTO> findRepairOrders(State state) {
         return repairOrderRegistry.findRepairOrders(state);
@@ -86,7 +86,7 @@ public class Controller {
      * @param costToRepair          The cost of the new repairTask.
      */
     public void addRepairTask(String repairTaskDescription, int costToRepair) {
-        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
+        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);  
     }
 
     /**
