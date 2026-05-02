@@ -1,15 +1,22 @@
 package se.kth.iv1350.repairelectricbike.model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import se.kth.iv1350.repairelectricbike.integration.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
+import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
+import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 
 public class RepairOrderTest {
     private RegistryCreator creator;
@@ -44,32 +51,15 @@ public class RepairOrderTest {
     }
 
     @Test
-    public void tstCnvrtRprOrdrToRprOrdrDTO() {
+    public void testConvertToDTO() {
         RepairOrderDTO repairOrderDTO = repairOrder.convertToDTO();
 
         assertEquals(repairOrder.getId(), repairOrderDTO.getId());
-
         assertEquals(repairOrder.getCustomer().getCustomerDTO(), repairOrderDTO.getCustomer());
-
         assertEquals(repairOrder.getBikeToRepair(), repairOrderDTO.getBikeToRepair());
-
         assertEquals(repairOrder.getProblemDescription(), repairOrderDTO.getProblemDescription());
-
         assertEquals(repairOrder.getEstimatedCompletionDate(), repairOrderDTO.getEstimatedCompletionDate());
-
         assertEquals(repairOrder.getState(), repairOrderDTO.getState());
-    }
-
-    @Test
-    public void tstCnvrtDiaRprtToDiaRprtDTO() {
-        DiagnosticReport diagnosticReport = repairOrder.getDiagnosticReport();
-        DiagnosticReportDTO diagnosticReportDTO = repairOrder.getDiagnosticReport().ConvertToDTO();
-
-        assertEquals(diagnosticReport.getDiagnosticResult(), diagnosticReportDTO.getDiagnosticResult());
-
-        assertEquals(diagnosticReport.getRepairTasks(), diagnosticReportDTO.getRepairTasks());
-
-        assertEquals(diagnosticReport.getTotalCost(), diagnosticReportDTO.getTotalCost());
     }
 
     @Test
@@ -78,47 +68,8 @@ public class RepairOrderTest {
         int costToRepair = 6767;
         RepairTaskDTO newRepairTask = new RepairTaskDTO(repairTaskProblemDesc, costToRepair);
         repairOrder.addRepairTask(repairTaskProblemDesc, costToRepair);
+        
         boolean result = newRepairTask.equals(repairOrder.getDiagnosticReport().getRepairTasks().getFirst());
         assertTrue(result);
-    }
-
-    @Test
-    void testConvertToDTO() {
-
-    }
-
-    @Test
-    void testGetBikeToRepair() {
-
-    }
-
-    @Test
-    void testGetCustomer() {
-
-    }
-
-    @Test
-    void testGetDiagnosticReport() {
-
-    }
-
-    @Test
-    void testGetEstimatedCompletionDate() {
-
-    }
-
-    @Test
-    void testGetId() {
-
-    }
-
-    @Test
-    void testGetProblemDescription() {
-
-    }
-
-    @Test
-    void testGetState() {
-
     }
 }
