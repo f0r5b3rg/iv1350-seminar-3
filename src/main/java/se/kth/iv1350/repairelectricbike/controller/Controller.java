@@ -59,7 +59,7 @@ public class Controller {
     }
 
     /**
-     * Saves the active repair order in rthe epair order registry. 
+     * Saves the active repair order in the repair order registry.
      */
     public void saveActiveRepairOrder() {
         RepairOrderDTO toSave = activeRepairOrder.convertToDTO();

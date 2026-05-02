@@ -45,7 +45,7 @@ public class RepairOrderDTO {
         return String.format(
             """
                 id: %d
-                Bike to  repair: %s
+                Bike to repair: %s
                 Problem description: %s
                 Diagnostic result: %s
                 Repair tasks: %s
