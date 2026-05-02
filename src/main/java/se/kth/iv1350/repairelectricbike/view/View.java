@@ -84,7 +84,7 @@ public class View {
         System.out.println("\nResult of searching for existing customer:\n" + foundCustomer + "\n");
 
         // Receptionist enters customer’s description and 
-        // system creates a repair order containing customer details, bike details, problemdescription and date.
+        // system creates a repair order containing customer details, bike details, problem description and date.
         String customerProblemDescription = "The bike has one wheel";
         controller.createRepairOrder("0707777777", "123bike123", customerProblemDescription);
         controller.saveActiveRepairOrder();
@@ -100,7 +100,7 @@ public class View {
         // System updates repair order, by adding diagnostic report and proposed repair tasks.
         controller.addRepairTask("The bike misses a wheel", 999); //Denna del är det som inte fungerar, repairtasks uppdateras inte i registret
         controller.addRepairTask("The chain is rusty", 67);
-        String diagnosticResult  = "The bike is definitly broken";
+        String diagnosticResult  = "The bike is definitely broken";
         controller.updateDiagnosticResult(5, diagnosticResult);
         controller.updateState(5, State.READY_FOR_APPROVAL);
         controller.updateCompletionDate(5, LocalDate.of(2026, 06, 7));
