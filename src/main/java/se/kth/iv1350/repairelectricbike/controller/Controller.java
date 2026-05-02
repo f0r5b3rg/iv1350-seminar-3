@@ -10,6 +10,7 @@ import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
 import se.kth.iv1350.repairelectricbike.integration.State;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 import se.kth.iv1350.repairelectricbike.model.RepairOrder;
 
 /**
@@ -92,7 +93,10 @@ public class Controller {
      * @param costToRepair          The cost of the new repairTask.
      */
     public void addRepairTask(String repairTaskDescription, int costToRepair) {
-        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);  
+        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
+
+        RepairTaskDTO task = new RepairTaskDTO(repairTaskDescription, costToRepair);
+        repairOrderRegistry.addRepairTask(activeRepairOrder.getId(), task);
     }
 
     /**

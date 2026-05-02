@@ -100,7 +100,7 @@ public class View {
         // System updates repair order, by adding diagnostic report and proposed repair tasks.
         controller.addRepairTask("The bike misses a wheel", 999); //Denna del är det som inte fungerar, repairtasks uppdateras inte i registret
         controller.addRepairTask("The chain is rusty", 67);
-        String diagnosticResult  = "The bike is definitly broken";
+        String diagnosticResult  = "The bike is definitely broken";
         controller.updateDiagnosticResult(5, diagnosticResult);
         controller.updateState(5, State.READY_FOR_APPROVAL);
         controller.updateCompletionDate(5, LocalDate.of(2026, 06, 7));
