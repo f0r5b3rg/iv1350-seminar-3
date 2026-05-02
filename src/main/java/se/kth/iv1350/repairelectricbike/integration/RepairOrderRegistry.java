@@ -121,6 +121,23 @@ public class RepairOrderRegistry {
         }
     }
 
+    /**
+     * Adds repair tasks to the specified repair order and updates total cost.
+     *
+     * @param repairOrderID The id of the repair order.
+     * @param task          The task to add.
+     */
+    public void addRepairTask(int repairOrderID, RepairTaskDTO task) {
+        RepairOrderData repairOrder = repairOrders.get(repairOrderID);
+        if (repairOrder != null) {
+            List<RepairTaskDTO> repairTasks = new ArrayList<>(repairOrder.diagnosticReport.getRepairTasks());
+            repairTasks.add(task);
+            int newTotal = repairOrder.diagnosticReport.getTotalCost() + task.getCostToRepair();
+            String diagResult = repairOrder.diagnosticReport.getDiagnosticResult();
+            repairOrder.diagnosticReport = new DiagnosticReportDTO(diagResult, repairTasks, newTotal);
+        }
+    }
+
     private class RepairOrderData {
         private int id;
         private CustomerDTO customer;
