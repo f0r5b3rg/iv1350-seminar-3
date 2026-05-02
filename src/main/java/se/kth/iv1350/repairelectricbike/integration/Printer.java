@@ -33,6 +33,7 @@ public class Printer {
         builder.append(repairOrderToPrint);
         endSection(builder);
         endSection(builder);
+        appendLine(builder, "----------------------");
 
         return builder.toString();
     }

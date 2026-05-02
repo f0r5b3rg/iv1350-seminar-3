@@ -77,19 +77,21 @@ public class View {
 
         //---------- BASIC FLOW STARTS HERE ----------
 
-        // Receptionist enters customer’s phone number and 
+        // Receptionist enters customer’s phone number and
         // system searches customer registry for customer details (name and email address),
         // and for details about the customer’s bike (brand, model and serial number).
         CustomerDTO foundCustomer = controller.searchCustomer("0707777777");
-        System.out.println("\nResult of searching for existing customer:\n" + foundCustomer + "\n");
+        System.out.println("\nResult of searching for existing customer by phone number:\n" + foundCustomer + "\n");
 
-        // Receptionist enters customer’s description and 
-        // system creates a repair order containing customer details, bike details, problem description and date.
+        // Receptionist asks customer for a description of the problem with the bike.
+        // System creates a repair order containing customer details, bike details, problem description and date.
         String customerProblemDescription = "The bike has one wheel";
         controller.createRepairOrder("0707777777", "123bike123", customerProblemDescription);
         controller.saveActiveRepairOrder();
+        int id = 5; // saved id so it is easy to change
 
-        // Technician asks system for repair order and system presents repair order.
+        // Technician asks system for repair order and system presents repair order and
+        // system presents repair order.
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
         System.out.println("Result of searching for newly created repair orders:");
         for(RepairOrderDTO order : repairOrders) {
@@ -98,22 +100,22 @@ public class View {
 
         // Technician performs diagnostic and enters diagnostic report and proposed repair tasks.
         // System updates repair order, by adding diagnostic report and proposed repair tasks.
-        controller.addRepairTask("The bike misses a wheel", 999); //Denna del är det som inte fungerar, repairtasks uppdateras inte i registret
+        controller.addRepairTask("The bike misses a wheel", 999);
         controller.addRepairTask("The chain is rusty", 67);
         String diagnosticResult  = "The bike is definitely broken";
-        controller.updateDiagnosticResult(5, diagnosticResult);
-        controller.updateState(5, State.READY_FOR_APPROVAL);
-        controller.updateCompletionDate(5, LocalDate.of(2026, 06, 7));
+        controller.updateDiagnosticResult(id, diagnosticResult);
+        controller.updateState(id, State.READY_FOR_APPROVAL);
+        controller.updateCompletionDate(id, LocalDate.of(2026, 06, 7));
 
         // Receptionist informs customer about diagnostic report, proposed repair tasks, cost
         // for each proposed repair task, and total cost.
         List<RepairOrderDTO> updatedRepairOrders = controller.findRepairOrders(State.READY_FOR_APPROVAL);
-        System.out.println("The presented diagnostic report and repair tasks:");
+        System.out.println("The diagnostic report and repair tasks presented to the customer:");
         System.out.println(updatedRepairOrders.getFirst().getDiagnosticReport()); 
 
         // Customer accepts proposed repair tasks and cost.
         // Receptionist registers that customer accepted repair order.
-        controller.updateState(5, State.ACCEPTED);
+        controller.updateState(id, State.ACCEPTED);
 
         // System prints repair order. The printout contains all repair order data, including
         // estimation of when reparation will be completed.

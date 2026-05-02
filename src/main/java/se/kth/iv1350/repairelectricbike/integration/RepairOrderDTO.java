@@ -51,7 +51,7 @@ public class RepairOrderDTO {
                 Repair tasks: %s
                 State: %s
                 Estimated completion date: %s
-                Total cost: %s             
+                Total cost: %s
             """,
             id,
             bikeToRepair,

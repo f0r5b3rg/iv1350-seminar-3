@@ -79,11 +79,11 @@ public class RepairOrderRegistryTest {
 
     @Test
     void testUpdateCompletionDate() {
-
         LocalDate newDate = LocalDate.of(2026, 04, 29);
-        repairOrderRegistry.updateCompletionDate(10, newDate);
+        int id = repairOrder.getId();
+        repairOrderRegistry.updateCompletionDate(id, newDate);
 
-        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(10).getDate());
+        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(id).getDate());
     }
 
     @Test

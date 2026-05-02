@@ -46,7 +46,7 @@ public class RepairOrderRegistry {
 
     /**
      * Get the value of the amount of repair orders in the registry.
-     * 
+     *
      * @return  The value of the amount of repair orders.
      */
     public static int getRepairOrderCount() {
@@ -54,10 +54,10 @@ public class RepairOrderRegistry {
     }
 
     /**
-     * This is used for the JUnit test to reset counter for the 
-     * amount of repair orders. 
-     * 
-     * @param newCount  The new counter. 
+     * This is used for the JUnit test to reset counter for the
+     * amount of repair orders.
+     *
+     * @param newCount  The new counter.
      */
     public static void setRepairOrderCount(int newCount) {
         repairOrderCount = newCount;
