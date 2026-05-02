@@ -26,6 +26,7 @@ public class RepairOrderRegistryTest {
         customer = new CustomerDTO("Frödinge", "ost@kaka.se", "112", bikes);
         repairOrder = new RepairOrder(customer, "123Drygt", "Bell is broken").convertToDTO();
 
+
         CustomerRegistry customerRegistry = creator.getCustomerRegistry();
         repairOrderRegistry = creator.getRepairOrderRegistry();
 
@@ -35,7 +36,7 @@ public class RepairOrderRegistryTest {
 
     @AfterEach
     public void tearDown() {
-        repairOrderRegistry.setRepairOrderCount(0);
+        RepairOrderRegistry.setRepairOrderCount(0);
         creator = null;
         customer = null;
         repairOrder = null;
@@ -78,10 +79,11 @@ public class RepairOrderRegistryTest {
 
     @Test
     void testUpdateCompletionDate() {
-        LocalDate newDate = LocalDate.of(2026, 04, 29);
-        repairOrderRegistry.updateCompletionDate(0, newDate);
 
-        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(0).getDate());
+        LocalDate newDate = LocalDate.of(2026, 04, 29);
+        repairOrderRegistry.updateCompletionDate(10, newDate);
+
+        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(10).getDate());
     }
 
     @Test

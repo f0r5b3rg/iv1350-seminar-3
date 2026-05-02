@@ -59,7 +59,7 @@ public class Controller {
     }
 
     /**
-     * Saves the active repair order in rthe epair order registry. 
+     * Saves the active repair order in rthe epair order registry.
      */
     public void saveActiveRepairOrder() {
         RepairOrderDTO toSave = activeRepairOrder.convertToDTO();
@@ -68,15 +68,15 @@ public class Controller {
 
     /**
      * Saves a customer in the customer registry.
-     * 
-     * @param customer the customer to save.  
+     *
+     * @param customer the customer to save.
      */
     public void saveCustomer(CustomerDTO customer) {
         customerRegistry.addCustomer(customer);
     }
 
     /**
-     * Retrieves all repair orders that match the specifed state. 
+     * Retrieves all repair orders that match the specifed state.
      *
      * @param state The state of the repair orders.
      * @return      A list of each repair order that is in the sought state.
@@ -92,7 +92,8 @@ public class Controller {
      * @param costToRepair          The cost of the new repairTask.
      */
     public void addRepairTask(String repairTaskDescription, int costToRepair) {
-        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);  
+        activeRepairOrder.addRepairTask(repairTaskDescription, costToRepair);
+        saveActiveRepairOrder();
     }
 
     /**

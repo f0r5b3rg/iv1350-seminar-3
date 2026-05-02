@@ -25,10 +25,22 @@ public class RepairOrderRegistry {
      * @param repairOrderDTO    The repair order to be added. 
      */
     public void addRepairOrder(RepairOrderDTO repairOrderDTO) {
-        repairOrders.add(new RepairOrderData(repairOrderDTO.getId(), repairOrderDTO.getCustomer(),
+        // Check if repair order with the same id as the one to be added already exists.
+        RepairOrderDTO foundRepairOrder = getRepairOrderDTObyID(repairOrderDTO.getId());
+
+        // Prepare the new repair order.
+        RepairOrderData newRepairOrder = new RepairOrderData(repairOrderDTO.getId(), repairOrderDTO.getCustomer(),
                 repairOrderDTO.getBikeToRepair(),
                 repairOrderDTO.getProblemDescription(), repairOrderDTO.getDate(), repairOrderDTO.getState(),
-                repairOrderDTO.getDiagnosticReport()));
+                repairOrderDTO.getDiagnosticReport());
+
+        // If a repair order with the same id as the one to be added already exists, replace it in the repairOrder list.
+        if (foundRepairOrder != null) {
+            this.repairOrders.set(newRepairOrder.id, newRepairOrder);
+            return;
+        }
+        // If one was not found, add it to the list.
+        repairOrders.add(newRepairOrder);
         repairOrderCount += 1;
     }
 
@@ -47,7 +59,7 @@ public class RepairOrderRegistry {
      * 
      * @param newCount  The new counter. 
      */
-    public void setRepairOrderCount(int newCount) {
+    public static void setRepairOrderCount(int newCount) {
         repairOrderCount = newCount;
     }
 
