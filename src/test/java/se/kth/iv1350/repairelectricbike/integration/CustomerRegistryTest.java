@@ -1,34 +1,31 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CustomerRegistryTest {
     private RegistryCreator creator;
+    private CustomerRegistry customerRegistry;
     private CustomerDTO customer;
     private List<BikeDTO> bikes;
 
-    private CustomerRegistry customerRegistry;
-
-    @Before
-    public void setUp() {
+    @BeforeEach
+    public void SetUp() {
         creator = new RegistryCreator();
         bikes = new ArrayList<>(List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
         customer = new CustomerDTO("Frödinge", "ost@kaka.se", "112", bikes);
         customerRegistry = creator.getCustomerRegistry();
-
         customerRegistry.addCustomer(customer);
     }
 
-    @After
-    public void tearDown()
-    {
+    @AfterEach
+    public void tearDown() {
         creator = null;
         customer = null;
         bikes = null;
@@ -36,7 +33,7 @@ public class CustomerRegistryTest {
     }
 
     @Test
-    public void testAddCustomer() {
+    void testAddCustomer() {
         customerRegistry.addCustomer(customer);
 
         boolean result = customer.equals(customerRegistry.searchCustomer(customer.getPhoneNumber()));
@@ -44,8 +41,9 @@ public class CustomerRegistryTest {
     }
 
     @Test
-    public void testSearchCustomer() {
+    void testSearchCustomer() {
         boolean result = customer.equals(customerRegistry.searchCustomer(customer.getPhoneNumber()));
+        
         assertTrue(result);
     }
 }

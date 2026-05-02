@@ -1,10 +1,16 @@
 package se.kth.iv1350.repairelectricbike.view;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import se.kth.iv1350.repairelectricbike.controller.Controller;
-import se.kth.iv1350.repairelectricbike.integration.*;
+import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
+import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+import se.kth.iv1350.repairelectricbike.integration.Printer;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.State;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire

@@ -1,7 +1,7 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
-import java.util.List;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Contains information about a repair order.
@@ -164,3 +164,4 @@ public class RepairOrderDTO {
         return diagnosticReport.getTotalCost();
     }
 }
+

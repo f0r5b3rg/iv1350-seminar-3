@@ -1,8 +1,8 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
 
 /*
   Contains all calls to the data store with all repair orders.

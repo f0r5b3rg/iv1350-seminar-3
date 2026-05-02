@@ -1,8 +1,13 @@
 package se.kth.iv1350.repairelectricbike.model;
 
-import se.kth.iv1350.repairelectricbike.integration.*;
-
 import java.time.LocalDate;
+
+import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
+import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
+import se.kth.iv1350.repairelectricbike.integration.State;
 
 /**
  * Contains information about a repair task.
