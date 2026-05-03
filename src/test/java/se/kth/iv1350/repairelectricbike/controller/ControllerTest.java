@@ -22,7 +22,7 @@ public class ControllerTest {
     private DiagnosticReportDTO diagnosticReport;
 
     @BeforeEach
-    public void SetUp() {
+    public void setUp() {
         creator = new RegistryCreator();
         controller = new Controller(creator, new Printer());
         repairOrderRegistry = creator.getRepairOrderRegistry();
@@ -57,7 +57,7 @@ public class ControllerTest {
         controller.createRepairOrder(customer.getPhoneNumber() ,bikes.get(1).getSerialNo(), "Problem");
         controller.addRepairTask(repairTaskProbDesc, costToRepair);
 
-        int newId = repairOrderRegistry.getRepairOrderCount() - 1;
+        int newId = RepairOrderRegistry.getRepairOrderCount() - 1;
 
         DiagnosticReportDTO result = repairOrderRegistry.getRepairOrderDTObyID(newId).getDiagnosticReport();
         RepairTaskDTO expected = new RepairTaskDTO(repairTaskProbDesc, costToRepair);

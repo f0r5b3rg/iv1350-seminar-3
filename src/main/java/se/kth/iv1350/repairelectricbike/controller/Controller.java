@@ -40,7 +40,7 @@ public class Controller {
      * Searches for an existing customer in the customerRegistry.
      *
      * @param phoneNumber The phone number of the sought customer.
-     * @return the customer's information.
+     * @return            The customer's information.
      */
     public CustomerDTO searchCustomer(String phoneNumber) {
         return customerRegistry.searchCustomer(phoneNumber);
