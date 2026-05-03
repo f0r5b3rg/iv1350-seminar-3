@@ -11,6 +11,7 @@ import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 
 public class DiagnosticReportTest {
     private DiagnosticReport diagnosticReport;   
+
     @BeforeEach
     public void StartUp() {
         diagnosticReport = new DiagnosticReport();
@@ -18,12 +19,12 @@ public class DiagnosticReportTest {
 
     @Test
     void testConvertToDTO() {
+        DiagnosticReportDTO expected = new DiagnosticReportDTO( diagnosticReport.getDiagnosticResult(),
+         diagnosticReport.getRepairTasks(), diagnosticReport.getTotalCost());
         DiagnosticReportDTO result = diagnosticReport.ConvertToDTO();
 
-        assertEquals(diagnosticReport.getDiagnosticResult(), result.getDiagnosticResult());
-        assertEquals(diagnosticReport.getRepairTasks(), result.getRepairTasks());
-        assertEquals(diagnosticReport.getTotalCost(), result.getTotalCost());
-
+        boolean compare = expected.equals(result);
+        assertTrue(compare);
     }
 
     @Test
@@ -31,7 +32,7 @@ public class DiagnosticReportTest {
         RepairTaskDTO repairTask1 = new RepairTaskDTO("Bike is too big", 1);
         diagnosticReport.addRepairTask(repairTask1);
 
-        boolean result = diagnosticReport.getRepairTasks().getFirst().equals(repairTask1);
-        assertTrue(result);
+        assertEquals(1, diagnosticReport.getTotalCost());
+        assertEquals(repairTask1, diagnosticReport.getRepairTasks().getFirst());
     }
 }

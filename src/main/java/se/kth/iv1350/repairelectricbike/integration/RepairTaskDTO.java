@@ -1,5 +1,7 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
+import java.util.Objects;
+
 /**
  * Contains information about a repair task.
  */
@@ -24,9 +26,14 @@ public class RepairTaskDTO {
                 "costToRepair: " + costToRepair;
     }
 
-    public boolean equals(RepairTaskDTO toCompare) {
-       return repairTaskDescription.equals(toCompare.repairTaskDescription) &&
-       costToRepair == toCompare.costToRepair;
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(!(obj instanceof RepairTaskDTO other))
+            return false;
+
+       return Objects.equals(repairTaskDescription, other.repairTaskDescription) &&
+              costToRepair == other.costToRepair;               
     }
 
     /**

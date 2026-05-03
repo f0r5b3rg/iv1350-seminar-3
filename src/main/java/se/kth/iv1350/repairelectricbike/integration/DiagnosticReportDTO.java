@@ -2,6 +2,7 @@ package se.kth.iv1350.repairelectricbike.integration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Contains information about a diagnostic report.
@@ -24,12 +25,6 @@ public class DiagnosticReportDTO {
         this.totalCost = totalCost;
     }
 
-    public boolean equals(DiagnosticReportDTO toCompare) {
-        return diagnosticResult.equals(toCompare.diagnosticResult) &&
-                repairTasks.equals(toCompare.repairTasks) &&
-                totalCost == toCompare.totalCost;
-    }
-
     @Override
     public String toString() {
         return String.format(
@@ -42,6 +37,18 @@ public class DiagnosticReportDTO {
             repairTasks,
             totalCost
         );
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(!(obj instanceof DiagnosticReportDTO other))
+            return false;
+
+        return Objects.equals(diagnosticResult, other.diagnosticResult) &&
+               Objects.equals(repairTasks, other.repairTasks) &&
+               totalCost == other.totalCost; 
     }
 
     /**

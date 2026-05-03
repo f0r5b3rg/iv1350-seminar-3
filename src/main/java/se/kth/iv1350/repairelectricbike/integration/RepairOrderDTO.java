@@ -2,6 +2,7 @@ package se.kth.iv1350.repairelectricbike.integration;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Contains information about a repair order.
@@ -64,14 +65,20 @@ public class RepairOrderDTO {
         );
     }
 
-    boolean equals(RepairOrderDTO toCompare) {
-        return id == toCompare.id &&
-                customer.equals(toCompare.customer) &&
-                bikeToRepair.equals(toCompare.bikeToRepair) &&
-                problemDescription.equals(toCompare.problemDescription) &&
-                estimatedCompletionDate.equals(toCompare.estimatedCompletionDate) &&
-                state == toCompare.state &&
-                diagnosticReport.equals(toCompare.diagnosticReport);
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) 
+            return true;
+        if (!(obj instanceof RepairOrderDTO other)) 
+            return false;
+    
+        return id == other.id &&
+               Objects.equals(customer, other.customer) &&
+               Objects.equals(bikeToRepair, other.bikeToRepair) &&
+               Objects.equals(problemDescription, other.problemDescription) &&
+               Objects.equals(estimatedCompletionDate, other.estimatedCompletionDate) &&
+               state == other.state &&
+               Objects.equals(diagnosticReport, other.diagnosticReport);
     }
 
     /**

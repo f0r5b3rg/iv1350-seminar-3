@@ -1,6 +1,7 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Contains information about a customer.
@@ -34,11 +35,17 @@ public class CustomerDTO {
                 "  Owned bikes: " + ownedBikes;
     }
 
-    public boolean equals(CustomerDTO toCompare) {
-        return name.equals(toCompare.name) &&
-                email.equals(toCompare.email) &&
-                phoneNumber.equals(toCompare.phoneNumber) &&
-                ownedBikes.equals(toCompare.ownedBikes);
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(!(obj instanceof CustomerDTO other))
+            return false;
+
+        return Objects.equals(name, other.name) &&
+               Objects.equals(email, other.email) &&
+               Objects.equals(phoneNumber, other.phoneNumber) &&
+               Objects.equals(ownedBikes, other.ownedBikes);
     }
 
     /**

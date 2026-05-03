@@ -1,5 +1,7 @@
 package se.kth.iv1350.repairelectricbike.integration;
 
+import java.util.Objects;
+
 /**
  * Contains information about a bike.
  */
@@ -28,10 +30,16 @@ public final class BikeDTO {
                 "serialNo: " + serialNo;
     }
 
-    public boolean equals (BikeDTO toCompare) {
-        return brand.equals(toCompare.brand) &&
-                model.equals(toCompare.model) &&
-                serialNo.equals(toCompare.serialNo);
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(!(obj instanceof BikeDTO other))
+            return false;
+
+        return Objects.equals(brand, other.brand) &&
+               Objects.equals(model, other.model) &&
+               Objects.equals(serialNo, other.serialNo);
     }
     
 

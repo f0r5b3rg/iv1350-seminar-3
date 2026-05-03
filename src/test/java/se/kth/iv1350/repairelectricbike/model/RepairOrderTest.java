@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
 import se.kth.iv1350.repairelectricbike.integration.CustomerRegistry;
+import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
 import se.kth.iv1350.repairelectricbike.integration.RegistryCreator;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderRegistry;
@@ -52,14 +53,24 @@ public class RepairOrderTest {
 
     @Test
     public void testConvertToDTO() {
-        RepairOrderDTO repairOrderDTO = repairOrder.convertToDTO();
+        DiagnosticReportDTO diagnosticReportDTO = new DiagnosticReportDTO(
+            repairOrder.getDiagnosticReport().getDiagnosticResult(), 
+            repairOrder.getDiagnosticReport().getRepairTasks(), 
+            repairOrder.getDiagnosticReport().getTotalCost());
+        
+        RepairOrderDTO expected = new RepairOrderDTO(
+            repairOrder.getId(), 
+            repairOrder.getCustomer().getCustomerDTO(), 
+            repairOrder.getBikeToRepair(), 
+            repairOrder.getProblemDescription(),
+            repairOrder.getEstimatedCompletionDate(),
+            repairOrder.getState(), 
+            diagnosticReportDTO);
 
-        assertEquals(repairOrder.getId(), repairOrderDTO.getId());
-        assertEquals(repairOrder.getCustomer().getCustomerDTO(), repairOrderDTO.getCustomer());
-        assertEquals(repairOrder.getBikeToRepair(), repairOrderDTO.getBikeToRepair());
-        assertEquals(repairOrder.getProblemDescription(), repairOrderDTO.getProblemDescription());
-        assertEquals(repairOrder.getEstimatedCompletionDate(), repairOrderDTO.getEstimatedCompletionDate());
-        assertEquals(repairOrder.getState(), repairOrderDTO.getState());
+        RepairOrderDTO result = repairOrder.convertToDTO();
+
+        boolean compare = expected.equals(result);
+        assertTrue(compare);
     }
 
     @Test
