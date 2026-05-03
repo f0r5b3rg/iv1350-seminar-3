@@ -59,9 +59,9 @@ public class ControllerTest {
         int newId = repairOrderRegistry.getRepairOrderCount() - 1;
 
         DiagnosticReportDTO result = repairOrderRegistry.getRepairOrderDTObyID(newId).getDiagnosticReport();
+        RepairTaskDTO expected = new RepairTaskDTO(repairTaskProbDesc, costToRepair);
 
-        assertEquals(repairTaskProbDesc, result.getRepairTasks().getFirst().getRepairTaskDescription());
-        assertEquals(costToRepair, result.getRepairTasks().getFirst().getCostToRepair());
+        assertEquals(result.getRepairTasks().getFirst(), expected);
     }
 
     @Test
@@ -82,11 +82,10 @@ public class ControllerTest {
 
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
         RepairOrderDTO result = repairOrders.getLast();
-        
-        assertEquals(customer.getPhoneNumber(), result.getCustomer().getPhoneNumber());
-        assertEquals(problemDesc, result.getProblemDescription());
-        assertEquals(bikes.get(1).getSerialNo(), result.getBikeToRepair().getSerialNo());
-        assertEquals(State.NEWLY_CREATED, result.getState());
+
+        RepairOrderDTO expected = new RepairOrderDTO(1, customer, bikes.get(1), problemDesc, LocalDate.now(), State.NEWLY_CREATED, new DiagnosticReportDTO("", new ArrayList<RepairTaskDTO>(), 0));
+
+        assertEquals(expected, result);
     }
 
     @Test

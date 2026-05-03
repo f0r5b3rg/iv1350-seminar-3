@@ -26,6 +26,7 @@ public class RepairTaskDTO {
                 "costToRepair: " + costToRepair;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if(this == obj)
             return true;
