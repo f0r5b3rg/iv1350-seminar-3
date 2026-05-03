@@ -32,6 +32,7 @@ public class ControllerTest {
         bikes = new ArrayList<>(List.of(testBike1, testBike2));
         customer = new CustomerDTO("Douglas Andersson", "Doggelito1337@gmail.com", "07676767", bikes);
         creator.getCustomerRegistry().addCustomer(customer);
+        RepairOrderRegistry.setRepairOrderCount(0);
 
         diagnosticReport = new DiagnosticReportDTO(null, null, 0);
         repairOrder = new RepairOrderDTO(0, customer, bikes.getFirst(), "Hjulet är böjt :(", LocalDate.now(), State.NEWLY_CREATED, diagnosticReport);

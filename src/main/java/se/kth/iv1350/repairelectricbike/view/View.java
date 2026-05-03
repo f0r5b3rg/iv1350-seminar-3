@@ -72,6 +72,11 @@ public class View {
             controller.saveActiveRepairOrder();
         }
 
+        controller.updateState(0, State.DENIED);
+        controller.updateState(1, State.DENIED);
+        controller.updateState(2, State.DENIED);
+        controller.updateState(3, State.DENIED);
+
         // At this point the customer registry and repair order registry contains 5 test objects.
 
 

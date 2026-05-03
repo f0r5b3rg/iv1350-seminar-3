@@ -54,10 +54,9 @@ public class RepairOrderRegistry {
     }
 
     /**
-     * This is used for the JUnit test to reset counter for the
-     * amount of repair orders.
+     * Set the value of the amount of repair orders in the registry.
      *
-     * @param newCount  The new counter.
+     * @param newCount  The new amount.
      */
     public static void setRepairOrderCount(int newCount) {
         repairOrderCount = newCount;
