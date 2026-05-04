@@ -20,10 +20,22 @@ public class DiagnosticReport {
         this.totalCost = 0;
     }
 
+    /**
+     * Creates a repair task and adds it to the diagnostic report. Calculates the new total cost of all
+     * repair tasks.
+     *
+     * @param repairTask    The repair task to be added.
+     */
     void addRepairTask(RepairTaskDTO repairTask) {
         repairTasks.add(repairTask);
         totalCost += repairTask.getCostToRepair();
     }
+
+    /**
+     * Converts a diagnostic report object to a diagnostic report DTO.
+     *
+     * @return the diagnostic report DTO.
+     */
 
     DiagnosticReportDTO ConvertToDTO() {
         return new DiagnosticReportDTO(this.diagnosticResult, this.repairTasks, this.totalCost);

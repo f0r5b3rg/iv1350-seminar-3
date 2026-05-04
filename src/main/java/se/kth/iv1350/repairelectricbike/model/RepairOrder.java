@@ -34,7 +34,7 @@ public class RepairOrder {
         this.customer = new Customer(customerDTO);
         this.bikeToRepair = this.customer.getBikeFromSerialNo(bikeSerialNo);
         this.problemDescription = problemDescription;
-        this.estimatedCompletionDate = LocalDate.now();
+        this.estimatedCompletionDate = null;
         this.state = State.NEWLY_CREATED;
         this.diagnosticReport = new DiagnosticReport();
     }
@@ -48,6 +48,12 @@ public class RepairOrder {
         return new RepairOrderDTO(this.id, this.customer.getCustomerDTO(), this.bikeToRepair, this.problemDescription, this.estimatedCompletionDate, this.state, this.diagnosticReport.ConvertToDTO());
     }
 
+    /**
+     * Creates and adds a repair task DTO to the repair order's diagnostic report.
+     *
+     * @param repairTaskDescription     A description of the repair task that needs to be performed.
+     * @param costToRepair              The cost to perform the repair task.
+     */
     public void addRepairTask(String repairTaskDescription, int costToRepair) {
         RepairTaskDTO taskToAdd = new RepairTaskDTO(repairTaskDescription, costToRepair);
         diagnosticReport.addRepairTask(taskToAdd);

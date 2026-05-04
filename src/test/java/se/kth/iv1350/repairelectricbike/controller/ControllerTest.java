@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ControllerTest {
     private RegistryCreator creator;
@@ -26,7 +25,7 @@ public class ControllerTest {
         creator = new RegistryCreator();
         controller = new Controller(creator, new Printer());
         repairOrderRegistry = creator.getRepairOrderRegistry();
-        
+
         BikeDTO testBike1 = new BikeDTO("SixSeven", "GenAlpha", "67WC69");
         BikeDTO testBike2 = new BikeDTO("SixNine", "GenBeta", "0");
         bikes = new ArrayList<>(List.of(testBike1, testBike2));
@@ -54,7 +53,7 @@ public class ControllerTest {
         String repairTaskProbDesc = "Problem löst";
         int costToRepair = 6767;
 
-        controller.createRepairOrder(customer.getPhoneNumber() ,bikes.get(1).getSerialNo(), "Problem");
+        controller.createRepairOrder(customer.getPhoneNumber(), bikes.get(1).getSerialNo(), "Problem");
         controller.addRepairTask(repairTaskProbDesc, costToRepair);
 
         int newId = RepairOrderRegistry.getRepairOrderCount() - 1;
@@ -62,7 +61,7 @@ public class ControllerTest {
         DiagnosticReportDTO result = repairOrderRegistry.getRepairOrderDTObyID(newId).getDiagnosticReport();
         RepairTaskDTO expected = new RepairTaskDTO(repairTaskProbDesc, costToRepair);
 
-        assertEquals(result.getRepairTasks().getFirst(), expected);
+        assertEquals(result.getRepairTasks().getFirst(), expected, "Failed to add repair task.");
     }
 
     @Test
@@ -71,8 +70,8 @@ public class ControllerTest {
 
         assertEquals(1, repairOrders.size());
 
-        for(RepairOrderDTO order : repairOrders)
-            assertEquals(State.NEWLY_CREATED, order.getState());
+        for (RepairOrderDTO order : repairOrders)
+            assertEquals(State.NEWLY_CREATED, order.getState(), "Failed to find repair orders by state.");
     }
 
     @Test
@@ -84,9 +83,9 @@ public class ControllerTest {
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
         RepairOrderDTO result = repairOrders.getLast();
 
-        RepairOrderDTO expected = new RepairOrderDTO(1, customer, bikes.get(1), problemDesc, LocalDate.now(), State.NEWLY_CREATED, new DiagnosticReportDTO("", new ArrayList<RepairTaskDTO>(), 0));
+        RepairOrderDTO expected = new RepairOrderDTO(1, customer, bikes.get(1), problemDesc, null, State.NEWLY_CREATED, new DiagnosticReportDTO("", new ArrayList<RepairTaskDTO>(), 0));
 
-        assertEquals(expected, result);
+        assertEquals(expected, result, "Failed to create and save active repair order.");
     }
 
     @Test
@@ -97,28 +96,28 @@ public class ControllerTest {
         controller.saveCustomer(customerToSave);
         CustomerDTO result = controller.searchCustomer("07696969");
 
-        assertTrue(customerToSave.equals(result));
+        assertEquals(customerToSave, result, "Failed to save customer.");
     }
 
     @Test
     void testSearchCustomer() {
         CustomerDTO result = controller.searchCustomer("07676767");
-        assertTrue(customer.equals(result));
+        assertEquals(customer, result, "Failed to find customer by phone number.");
     }
 
     @Test
     void testUpdateCompletionDate() {
         repairOrderRegistry.updateDiagnosticResult(0, "Lol");
 
-        assertEquals("Lol", repairOrderRegistry.getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult());
-    }   
+        assertEquals("Lol", repairOrderRegistry.getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult(), "Failed to update completion date.");
+    }
 
     @Test
     void testUpdateDiagnosticResult() {
         LocalDate newDate = LocalDate.of(2026, 04, 29);
         controller.updateCompletionDate(0, newDate);
 
-        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(0).getDate());
+        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(0).getDate(), "Failed to update diagnostic result.");
     }
 
     @Test
@@ -127,6 +126,6 @@ public class ControllerTest {
 
         controller.updateState(0, newState);
 
-        assertEquals(State.ACCEPTED, repairOrderRegistry.getRepairOrderDTObyID(0).getState());
+        assertEquals(State.ACCEPTED, repairOrderRegistry.getRepairOrderDTObyID(0).getState(), "Failed to update state.");
     }
 }

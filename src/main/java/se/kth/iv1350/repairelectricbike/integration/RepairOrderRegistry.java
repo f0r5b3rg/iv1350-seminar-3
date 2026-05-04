@@ -92,6 +92,13 @@ public class RepairOrderRegistry {
             repairOrder.estimatedCompletionDate = estimatedDate;
     }
 
+    /**
+     * Retrieves a repair order from the database with the same id as repairOrderID as
+     * a repair order DTO.
+     *
+     * @param repairOrderID     The id of the repair order to be retrieved.
+     * @return                  A repair order with repairOrderID as its id. If none was found, returns null.
+     */
     public RepairOrderDTO getRepairOrderDTObyID(int repairOrderID) {
         for (RepairOrderData repairOrder : repairOrders)
         {
@@ -129,23 +136,6 @@ public class RepairOrderRegistry {
             List<RepairTaskDTO> repairTasks = repairOrder.diagnosticReport.getRepairTasks();
             int totalCost = repairOrder.diagnosticReport.getTotalCost();
             repairOrder.diagnosticReport = new DiagnosticReportDTO(diagnosticResult, repairTasks, totalCost);
-        }
-    }
-
-    /**
-     * Adds repair tasks to the specified repair order and updates total cost.
-     *
-     * @param repairOrderID The id of the repair order.
-     * @param task          The task to add.
-     */
-    public void addRepairTask(int repairOrderID, RepairTaskDTO task) {
-        RepairOrderData repairOrder = repairOrders.get(repairOrderID);
-        if (repairOrder != null) {
-            List<RepairTaskDTO> repairTasks = new ArrayList<>(repairOrder.diagnosticReport.getRepairTasks());
-            repairTasks.add(task);
-            int newTotal = repairOrder.diagnosticReport.getTotalCost() + task.getCostToRepair();
-            String diagResult = repairOrder.diagnosticReport.getDiagnosticResult();
-            repairOrder.diagnosticReport = new DiagnosticReportDTO(diagResult, repairTasks, newTotal);
         }
     }
 

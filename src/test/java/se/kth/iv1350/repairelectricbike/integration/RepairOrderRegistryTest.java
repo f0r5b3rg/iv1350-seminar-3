@@ -20,7 +20,7 @@ public class RepairOrderRegistryTest {
     private List<BikeDTO> bikes;
 
     @BeforeEach
-    public void SetUp() {
+    public void setUp() {
         RepairOrderRegistry.setRepairOrderCount(0);
         creator = new RegistryCreator();
         bikes = new ArrayList<>(List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
@@ -50,9 +50,9 @@ public class RepairOrderRegistryTest {
         repairOrderRegistry.addRepairOrder(newRepairOrder);
         List<RepairOrderDTO> repairOrders = repairOrderRegistry.findRepairOrders(State.NEWLY_CREATED);
         
-        assertEquals(2, repairOrders.size());
+        assertEquals(2, repairOrders.size(), "Failed to add repair order.");
         boolean result = repairOrder.equals(repairOrders.getFirst());
-        assertTrue(result);
+        assertTrue(result, "Failed to add repair order.");
     }
 
     @Test
@@ -60,21 +60,21 @@ public class RepairOrderRegistryTest {
         List<RepairOrderDTO> repairOrders = repairOrderRegistry.findRepairOrders(State.NEWLY_CREATED);
 
         assertEquals(1, repairOrders.size());
-        assertEquals(State.NEWLY_CREATED, repairOrders.getFirst().getState());
+        assertEquals(State.NEWLY_CREATED, repairOrders.getFirst().getState(), "Failed to find repair orders with given state.");
     }
 
     @Test
     void testGetRepairOrderCount() {
         int count = RepairOrderRegistry.getRepairOrderCount();
 
-        assertEquals(1, count);     
+        assertEquals(1, count, "Failed to retrieve correct repair order count.");
     }
 
     @Test
     void testGetRepairOrderDTObyID() {
         boolean result = repairOrder.equals(repairOrderRegistry.getRepairOrderDTObyID(0));
 
-        assertTrue(result);
+        assertTrue(result, "Failed to retrieve repair order DTO by id.");
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RepairOrderRegistryTest {
         int id = repairOrder.getId();
         repairOrderRegistry.updateCompletionDate(id, newDate);
 
-        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(id).getDate());
+        assertEquals(newDate, repairOrderRegistry.getRepairOrderDTObyID(id).getDate(), "Failed to update completion date.");
     }
 
     @Test
@@ -91,7 +91,7 @@ public class RepairOrderRegistryTest {
         String newDiagnosticResult = "Problem solved";
         repairOrderRegistry.updateDiagnosticResult(0, newDiagnosticResult);
 
-        assertEquals(newDiagnosticResult, repairOrderRegistry.getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult());
+        assertEquals(newDiagnosticResult, repairOrderRegistry.getRepairOrderDTObyID(0).getDiagnosticReport().getDiagnosticResult(), "Failed to update diagnostic result.");
     }
 
     @Test
@@ -99,6 +99,6 @@ public class RepairOrderRegistryTest {
         State newState = State.ACCEPTED;
         repairOrderRegistry.updateState(0, newState);
 
-        assertEquals(newState, repairOrderRegistry.getRepairOrderDTObyID(0).getState());
+        assertEquals(newState, repairOrderRegistry.getRepairOrderDTObyID(0).getState(), "Failed to update state.");
     }
 }

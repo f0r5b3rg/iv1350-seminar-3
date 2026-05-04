@@ -69,7 +69,7 @@ public class RepairOrderTest {
         RepairOrderDTO result = repairOrder.convertToDTO();
 
         boolean compare = expected.equals(result);
-        assertTrue(compare);
+        assertTrue(compare, "Repair order DTO conversion failed.");
     }
 
     @Test
@@ -80,6 +80,6 @@ public class RepairOrderTest {
         repairOrder.addRepairTask(repairTaskProblemDesc, costToRepair);
         
         boolean result = newRepairTask.equals(repairOrder.getDiagnosticReport().getRepairTasks().getFirst());
-        assertTrue(result);
+        assertTrue(result, "Repair Task not added successfully.");
     }
 }

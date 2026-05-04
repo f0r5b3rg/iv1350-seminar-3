@@ -13,7 +13,7 @@ public class DiagnosticReportTest {
     private DiagnosticReport diagnosticReport;   
 
     @BeforeEach
-    public void StartUp() {
+    public void setUp() {
         diagnosticReport = new DiagnosticReport();
     }
 
@@ -24,7 +24,7 @@ public class DiagnosticReportTest {
         DiagnosticReportDTO result = diagnosticReport.ConvertToDTO();
 
         boolean compare = expected.equals(result);
-        assertTrue(compare);
+        assertTrue(compare, "Diagnostic report DTO conversion failed.");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class DiagnosticReportTest {
         RepairTaskDTO repairTask1 = new RepairTaskDTO("Bike is too big", 1);
         diagnosticReport.addRepairTask(repairTask1);
 
-        assertEquals(1, diagnosticReport.getTotalCost());
-        assertEquals(repairTask1, diagnosticReport.getRepairTasks().getFirst());
+        assertEquals(1, diagnosticReport.getTotalCost(), "Total cost calculation failed.");
+        assertEquals(repairTask1, diagnosticReport.getRepairTasks().getFirst(), "Repair task addition failed.");
     }
 }

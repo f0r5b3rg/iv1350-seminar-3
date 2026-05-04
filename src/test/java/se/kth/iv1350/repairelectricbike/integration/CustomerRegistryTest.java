@@ -16,7 +16,7 @@ public class CustomerRegistryTest {
     private List<BikeDTO> bikes;
 
     @BeforeEach
-    public void SetUp() {
+    public void setUp() {
         creator = new RegistryCreator();
         bikes = new ArrayList<>(List.of(new BikeDTO("Disktrasa", "Yes", "123Drygt")));
         customer = new CustomerDTO("Frödinge", "ost@kaka.se", "112", bikes);
@@ -37,13 +37,13 @@ public class CustomerRegistryTest {
         customerRegistry.addCustomer(customer);
 
         boolean result = customer.equals(customerRegistry.searchCustomer(customer.getPhoneNumber()));
-        assertTrue(result);
+        assertTrue(result, "Failed to add customer.");
     }
 
     @Test
     void testSearchCustomer() {
         boolean result = customer.equals(customerRegistry.searchCustomer(customer.getPhoneNumber()));
         
-        assertTrue(result);
+        assertTrue(result, "Failed to find customer by phone number.");
     }
 }
