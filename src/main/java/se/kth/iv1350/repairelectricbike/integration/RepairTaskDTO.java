@@ -20,13 +20,6 @@ public class RepairTaskDTO {
         this.costToRepair = costToRepair;
     }
 
-
-    @Override
-    public String toString() {
-        return "repairTaskDescription: " + repairTaskDescription + ", " +
-                "costToRepair: " + costToRepair;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if(this == obj)

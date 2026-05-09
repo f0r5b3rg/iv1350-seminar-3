@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.repairelectricbike.controller.Controller;
-import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
-import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
-import se.kth.iv1350.repairelectricbike.integration.Printer;
-import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
-import se.kth.iv1350.repairelectricbike.integration.State;
+import se.kth.iv1350.repairelectricbike.integration.*;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire
@@ -98,11 +94,36 @@ public class View {
         // Technician asks system for repair order and system presents repair order and
         // system presents repair order.
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
+        List<RepairTaskDTO> repairTasks;
         System.out.println("Result of searching for newly created repair orders:");
         for(RepairOrderDTO order : repairOrders) {
-            System.out.println(order);
+            repairTasks = order.getDiagnosticReport().getRepairTasks();
+            StringBuilder repairTask = new StringBuilder("[");
+            for (RepairTaskDTO task : repairTasks) {
+                repairTask.append("[").append(task.getRepairTaskDescription()).append(", ").append(task.getCostToRepair()).append("], ");
+            }
+            repairTask.append("]");
+            System.out.printf(
+                        """
+                            id: %d
+                            Bike to repair: %s
+                            Problem description: %s
+                            Diagnostic result: %s
+                            Repair tasks: %s
+                            State: %s
+                            Estimated completion date: %s
+                            Total cost: %s
+                        """,
+                        order.getId(),
+                        order.getBikeToRepair(),
+                        order.getProblemDescription(),
+                        order.getDiagnosticReport().getDiagnosticResult(),
+                        repairTask,
+                        order.getState(),
+                        order.getEstimatedCompletionDate(),
+                        order.getDiagnosticReport().getTotalCost()
+            );
         }
-
         // Technician performs diagnostic and enters diagnostic report and proposed repair tasks.
         // System updates repair order, by adding diagnostic report and proposed repair tasks.
         controller.addRepairTask("The bike misses a wheel", 999);
@@ -116,7 +137,22 @@ public class View {
         // for each proposed repair task, and total cost.
         List<RepairOrderDTO> updatedRepairOrders = controller.findRepairOrders(State.READY_FOR_APPROVAL);
         System.out.println("The diagnostic report and repair tasks presented to the customer:");
-        System.out.println(updatedRepairOrders.getFirst().getDiagnosticReport()); 
+        DiagnosticReportDTO diagnosticReportDTO = updatedRepairOrders.getFirst().getDiagnosticReport();
+        StringBuilder repairTask = new StringBuilder("[");
+        for (RepairTaskDTO task : diagnosticReportDTO.getRepairTasks()) {
+            repairTask.append("[").append(task.getRepairTaskDescription()).append(", ").append(task.getCostToRepair()).append("], ");
+        }
+        repairTask.append("]");
+
+        System.out.printf("""
+                Diagnostic Result: %s
+                Repair Tasks: %s
+                Total cost: %d
+            """,
+                diagnosticReportDTO.getDiagnosticResult(),
+                repairTask,
+                diagnosticReportDTO.getTotalCost()
+        );
 
         // Customer accepts proposed repair tasks and cost.
         // Receptionist registers that customer accepted repair order.

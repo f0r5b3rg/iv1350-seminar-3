@@ -26,20 +26,6 @@ public class DiagnosticReportDTO {
     }
 
     @Override
-    public String toString() {
-        return String.format(
-            """
-                Diagnostic Result: %s
-                Repair Tasks: %s
-                Total cost: %d
-            """,
-            diagnosticResult,
-            repairTasks,
-            totalCost
-        );
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if(this == obj)
             return true;

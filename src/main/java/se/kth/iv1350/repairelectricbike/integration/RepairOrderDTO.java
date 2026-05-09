@@ -128,23 +128,4 @@ public class RepairOrderDTO {
     public DiagnosticReportDTO getDiagnosticReport() {
         return diagnosticReport;
     }
-
-    /**
-     * Get the list of repair tasks.
-     * 
-     * @return the repair tasks.
-     */
-    public List<RepairTaskDTO> getRepairTasks() {
-        return diagnosticReport.getRepairTasks();
-    }
-
-    /**
-     * Get the value of total cost
-     * 
-     * @return the value of total cost
-     */
-    public int getTotalCost() {
-        return diagnosticReport.getTotalCost();
-    }
 }
-
