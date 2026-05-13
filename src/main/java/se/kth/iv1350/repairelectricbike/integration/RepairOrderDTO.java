@@ -41,6 +41,30 @@ public class RepairOrderDTO {
     }
 
     @Override
+    public String toString() {
+        return String.format(
+            """
+                id: %d
+                Bike to repair: %s
+                Problem description: %s
+                Diagnostic result: %s
+                Repair tasks: %s
+                State: %s
+                Estimated completion date: %s
+                Total cost: %s
+            """,
+            id,
+            bikeToRepair,
+            problemDescription,
+            diagnosticReport.getDiagnosticResult(),
+            diagnosticReport.getRepairTasks(),
+            state,
+            estimatedCompletionDate,
+            diagnosticReport.getTotalCost()
+        );
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) 
             return true;
