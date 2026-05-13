@@ -7,10 +7,8 @@ import java.util.List;
 import se.kth.iv1350.repairelectricbike.controller.Controller;
 import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
 import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
-import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
 import se.kth.iv1350.repairelectricbike.integration.Printer;
 import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
-import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
 import se.kth.iv1350.repairelectricbike.integration.State;
 
 /**
