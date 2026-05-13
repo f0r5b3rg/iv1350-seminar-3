@@ -21,6 +21,12 @@ public class RepairTaskDTO {
     }
 
     @Override
+    public String toString() {
+        return "repairTaskDescription: " + repairTaskDescription + ", " +
+                "costToRepair: " + costToRepair;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if(this == obj)
             return true;

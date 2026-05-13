@@ -1,12 +1,17 @@
 package se.kth.iv1350.repairelectricbike.view;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import se.kth.iv1350.repairelectricbike.controller.Controller;
-import se.kth.iv1350.repairelectricbike.integration.*;
+import se.kth.iv1350.repairelectricbike.integration.BikeDTO;
+import se.kth.iv1350.repairelectricbike.integration.CustomerDTO;
+import se.kth.iv1350.repairelectricbike.integration.DiagnosticReportDTO;
+import se.kth.iv1350.repairelectricbike.integration.Printer;
+import se.kth.iv1350.repairelectricbike.integration.RepairOrderDTO;
+import se.kth.iv1350.repairelectricbike.integration.RepairTaskDTO;
+import se.kth.iv1350.repairelectricbike.integration.State;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire
@@ -30,7 +35,8 @@ public class View {
     public void sampleExecution() {
         System.out.println("Sample execution started");
         // Creates test customers to use for sample execution.
-        // The test customers are created and then passed to CustomerRegistry to be saved.
+        // The test customers are created and then passed to CustomerRegistry to be
+        // saved.
 
         // Customer 1 bike setup
         BikeDTO customer1Bike1 = new BikeDTO("Golfklubba", "Iron 7", "dragonslayer67");
@@ -58,12 +64,14 @@ public class View {
         CustomerDTO customer5 = new CustomerDTO("Prov Provsdotter", "prov@prov.se", "1231231212", customer5Bikes);
 
         // Save test customers and corresponding new repair order to registries.
-        ArrayList<CustomerDTO> testCustomers = new ArrayList<>(List.of(customer1, customer2, customer3, customer4, customer5));
+        ArrayList<CustomerDTO> testCustomers = new ArrayList<>(
+                List.of(customer1, customer2, customer3, customer4, customer5));
         for (CustomerDTO customer : testCustomers) {
             // Adds customer to CustomerRegistry.
             controller.saveCustomer(customer);
             // Creates a repair order and sets it as active repair order.
-            controller.createRepairOrder(customer.getPhoneNumber(), customer.getOwnedBikes().getFirst().getSerialNo(), "Bike inverted");
+            controller.createRepairOrder(customer.getPhoneNumber(), customer.getOwnedBikes().getFirst().getSerialNo(),
+                    "Bike inverted");
             // Saves active repair order.
             controller.saveActiveRepairOrder();
         }
@@ -73,19 +81,21 @@ public class View {
         controller.updateState(2, State.DENIED);
         controller.updateState(3, State.DENIED);
 
-        // At this point the customer registry and repair order registry contains 5 test objects.
+        // At this point the customer registry and repair order registry contains 5 test
+        // objects.
 
-
-        //---------- BASIC FLOW STARTS HERE ----------
+        // ---------- BASIC FLOW STARTS HERE ----------
 
         // Receptionist enters customer’s phone number and
-        // system searches customer registry for customer details (name and email address),
+        // system searches customer registry for customer details (name and email
+        // address),
         // and for details about the customer’s bike (brand, model and serial number).
         CustomerDTO foundCustomer = controller.searchCustomer("0707777777");
         System.out.println("\nResult of searching for existing customer by phone number:\n" + foundCustomer + "\n");
 
         // Receptionist asks customer for a description of the problem with the bike.
-        // System creates a repair order containing customer details, bike details, problem description and date.
+        // System creates a repair order containing customer details, bike details,
+        // problem description and date.
         String customerProblemDescription = "The bike has one wheel";
         controller.createRepairOrder("0707777777", "123bike123", customerProblemDescription);
         controller.saveActiveRepairOrder();
@@ -94,74 +104,38 @@ public class View {
         // Technician asks system for repair order and system presents repair order and
         // system presents repair order.
         List<RepairOrderDTO> repairOrders = controller.findRepairOrders(State.NEWLY_CREATED);
-        List<RepairTaskDTO> repairTasks;
         System.out.println("Result of searching for newly created repair orders:");
-        for(RepairOrderDTO order : repairOrders) {
-            repairTasks = order.getDiagnosticReport().getRepairTasks();
-            StringBuilder repairTask = new StringBuilder("[");
-            for (RepairTaskDTO task : repairTasks) {
-                repairTask.append("[").append(task.getRepairTaskDescription()).append(", ").append(task.getCostToRepair()).append("], ");
-            }
-            repairTask.append("]");
-            System.out.printf(
-                        """
-                            id: %d
-                            Bike to repair: %s
-                            Problem description: %s
-                            Diagnostic result: %s
-                            Repair tasks: %s
-                            State: %s
-                            Estimated completion date: %s
-                            Total cost: %s
-                        """,
-                        order.getId(),
-                        order.getBikeToRepair(),
-                        order.getProblemDescription(),
-                        order.getDiagnosticReport().getDiagnosticResult(),
-                        repairTask,
-                        order.getState(),
-                        order.getEstimatedCompletionDate(),
-                        order.getDiagnosticReport().getTotalCost()
-            );
+        for (RepairOrderDTO order : repairOrders) {
+            System.out.println(order);
         }
-        // Technician performs diagnostic and enters diagnostic report and proposed repair tasks.
-        // System updates repair order, by adding diagnostic report and proposed repair tasks.
+
+        // Technician performs diagnostic and enters diagnostic report and proposed
+        // repair tasks.
+        // System updates repair order, by adding diagnostic report and proposed repair
+        // tasks.
         controller.addRepairTask("The bike misses a wheel", 999);
         controller.addRepairTask("The chain is rusty", 67);
-        String diagnosticResult  = "The bike is definitely broken";
+        String diagnosticResult = "The bike is definitely broken";
         controller.updateDiagnosticResult(id, diagnosticResult);
         controller.updateState(id, State.READY_FOR_APPROVAL);
         controller.updateCompletionDate(id, LocalDate.of(2026, 06, 7));
 
-        // Receptionist informs customer about diagnostic report, proposed repair tasks, cost
+        // Receptionist informs customer about diagnostic report, proposed repair tasks,
+        // cost
         // for each proposed repair task, and total cost.
         List<RepairOrderDTO> updatedRepairOrders = controller.findRepairOrders(State.READY_FOR_APPROVAL);
         System.out.println("The diagnostic report and repair tasks presented to the customer:");
-        DiagnosticReportDTO diagnosticReportDTO = updatedRepairOrders.getFirst().getDiagnosticReport();
-        StringBuilder repairTask = new StringBuilder("[");
-        for (RepairTaskDTO task : diagnosticReportDTO.getRepairTasks()) {
-            repairTask.append("[").append(task.getRepairTaskDescription()).append(", ").append(task.getCostToRepair()).append("], ");
-        }
-        repairTask.append("]");
-
-        System.out.printf("""
-                Diagnostic Result: %s
-                Repair Tasks: %s
-                Total cost: %d
-            """,
-                diagnosticReportDTO.getDiagnosticResult(),
-                repairTask,
-                diagnosticReportDTO.getTotalCost()
-        );
+        System.out.println(updatedRepairOrders.getFirst().getDiagnosticReport());
 
         // Customer accepts proposed repair tasks and cost.
         // Receptionist registers that customer accepted repair order.
         controller.updateState(id, State.ACCEPTED);
 
-        // System prints repair order. The printout contains all repair order data, including
+        // System prints repair order. The printout contains all repair order data,
+        // including
         // estimation of when reparation will be completed.
-       List<RepairOrderDTO> foundRepairOrders = controller.findRepairOrders(State.ACCEPTED);
-       Printer printer = new Printer();
-       printer.printRepairOrder(foundRepairOrders.getFirst());
+        List<RepairOrderDTO> foundRepairOrders = controller.findRepairOrders(State.ACCEPTED);
+        Printer printer = new Printer();
+        printer.printRepairOrder(foundRepairOrders.getFirst());
     }
 }
